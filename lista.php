@@ -1,51 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crear lista de Reproduccion</title>
+</head>
+<body>
+
 <?php
-require_once "../vendor/autoload.php";
+  require_once "../vendor/autoload.php";
+  include './config/conneccion.php';
 
-$cloud_name="fsalazarsch";
-$api_key="484133148959599";
-$api_secret='569Ani_37gehInUYrlpO3xnpyIg';
+  $db = new Database();
+  $conn = $db->connect();
+
+  $sql = "SELECT cloudname, api_key, api_secret FROM config LIMIT 1";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows == 1) 
+    $row = $result->fetch_assoc();
 
 
-\Cloudinary::config(
-	array(
-		"cloud_name" => $cloud_name,
-		"api_key" => $api_key,
-		"api_secret" => $api_secret
-  )
-);
+  \Cloudinary::config(
+    array(
+      "cloud_name" => $row["cloudname"],
+      "api_key" => $row["api_key"],
+      "api_secret" => $row["api_secret"]
+    )
+  );
 
+  include "./config/header.html"
 ?>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 <script type="text/javascript">
   function agregar(text, data){
     var html = $("#detalle_lista").html();
     var value = $("#lista").val();
+    var valtxt = $("#detlista").val();
     var nodo = "<li>"+text+"</li>";
 
     
     if (html.includes(nodo)){
         $("#detalle_lista").html(html.replace(nodo, ""));
         $("#lista").val(value.replace(" "+data, ""));
+        $("#detlista").val(valtxt.replace(","+text, ""));
+
     }else{
         $("#detalle_lista").html(html+nodo);
         $("#lista").val(value+" "+data);
+        $("#detlista").val(valtxt+","+text);
 
       }
-    console.log(text);
+    //console.log(valtxt);
   }
 </script>
 
+<br/>
+<div class="container p-3 my-3 bg-primary text-white">
+  Crear Lista de Reproduccion
+</div>
 <div class="container">
+<kbd>Para agregar un video a la lista pulse sobre el nombre del video, para quitarlo pulse otra vez sobre el video</kbd><hr>
 
 
 <?php
   
-  //print "Listing resources on cloud name: ". $cloud_name . "<br>";
   $api = new \Cloudinary\Api();
   $results = $api->resources(array("resource_type" => "video", "max_results" => 30));
   echo '<div class="list-group">';
@@ -55,7 +73,7 @@ $api_secret='569Ani_37gehInUYrlpO3xnpyIg';
     if (strpos($value["public_id"], 'publicidad') !== false) {
 
        $nombre = str_replace("publicidad/", "", $value["public_id"]);
-         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a><br>";
+         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a>";
              }
   }
 
@@ -65,7 +83,7 @@ $api_secret='569Ani_37gehInUYrlpO3xnpyIg';
   foreach ($results["resources"] as $value) {
    if (strpos($value["public_id"], 'contenido') !== false) {
        $nombre = str_replace("contenido/", "", $value["public_id"]);
-         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a><br>";
+         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a>";
     }
   }
 
@@ -75,7 +93,7 @@ $api_secret='569Ani_37gehInUYrlpO3xnpyIg';
    if (strpos($value["public_id"], 'material') !== false) {
         $nombre = str_replace("material/", "", $value["public_id"]);
 
-         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a><br>";
+         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a>";
        }
   }
 
@@ -84,11 +102,16 @@ $api_secret='569Ani_37gehInUYrlpO3xnpyIg';
     <hr>
     <form enctype="multipart/form-data"  method="POST" action="subir_lista.php">
       <div class="container form-group">
-        <input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendra la lista"  class="form-control"><br>
-        <input id="lista" type="hidden" name="lista" placeholder=""  class="form-control"><br>
+        <input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendra la lista"  class="form-control" required="true"><br>
+        <input id="lista" type="hidden" name="lista" class="form-control"><br>
+        <input id="detlista" type="hidden" name="detlista" class="form-control"><br>
+        
         <p>Detalle de lista</p>
         <ol id="detalle_lista">
         </ol>
             <button id="submitButton" type="submit" class="btn btn-primary">Guardar lista</button>
       </div>
     </form>
+
+
+<a href="index.php">Ir al inicio</a>
