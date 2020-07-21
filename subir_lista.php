@@ -18,7 +18,8 @@
   $consulta = "INSERT INTO lista (nombre, lista) VALUES (?,?)";
   $sentencia = $conn->prepare($consulta);
 
-  $_POST['detlista'] = substr($_POST['detlista'],1);
+  //if ($_POST['detlista'][0] == ',') 
+  //$_POST['detlista'] = substr($_POST['detlista'],1);
   $sentencia->bind_param("ss",$_POST['nombre'],$_POST['detlista'] );
   $sentencia->execute();
 
@@ -34,7 +35,9 @@
 	<video width="80%" autoplay controls="false">
     <track src="test.vtt" kind="subtitles" label="English Subtitles" srclang="en" />
   	<!-- <source src="'.$item.'" type="video/mp4"> -->
+	 <button id="subtitles" type="button" data-state="subtitles">CC</button>
 	</video>
+	
 
 	<table class="table">  
 		<thead class="thead-dark">
@@ -98,4 +101,3 @@
 
 
 </script>
-
