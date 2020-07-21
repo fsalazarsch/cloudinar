@@ -13,6 +13,7 @@
 		<li><a href="subir_archivo.php">Subir un video</a></li>
 		<li><a href="upload.php">Ver lista de videos Subidos</a></li>
 		<li><a href="lista.php">Crear una Lista de Reproduccion</a></li>
+		<li><a href="ver_lista.php">Ver Listas de Reproduccion</a></li>
 	</ol>
 </div>
 </body>
