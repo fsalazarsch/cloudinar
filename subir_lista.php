@@ -1,40 +1,74 @@
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reproduciendo...</title>
+</head>
+<body>
 <link rel="stylesheet" href="video.css">
 
-
-
-<div class="container">
 <?php
-
-    echo "<h3>".$_POST['nombre']."</h3>";
-    
-    echo '<video width="800" autoplay controls="false">';
-    echo '<track src="test.vtt" kind="subtitles" label="English Subtitles" srclang="en" />';
-  	//echo '<source src="'.$item.'" type="video/mp4">';
-	echo '</video>';
+	include "./config/header.html";
 
 
-    //foreach ($lista as $item) {
-    //	if ($item){
-    //		echo '<video width="800" autoplay controls="false">';
-  			//echo '<source src="'.$item.'" type="video/mp4">';
-	//		echo '</video>';
-	//	}
-    //}
-    
+  include './config/conneccion.php';
+
+  $db = new Database();
+  $conn = $db->connect();
+
+  $consulta = "INSERT INTO lista (nombre, lista) VALUES (?,?)";
+  $sentencia = $conn->prepare($consulta);
+
+  $_POST['detlista'] = substr($_POST['detlista'],1);
+  $sentencia->bind_param("ss",$_POST['nombre'],$_POST['detlista'] );
+  $sentencia->execute();
 
 ?>
+
+<br>
+<div class="container">
+<?php 
+	echo "<h3>".$_POST['nombre']."</h3>"; 
+?>
+<div class="container" style="display: flex;">
+
+	<video width="80%" autoplay controls="false">
+    <track src="test.vtt" kind="subtitles" label="English Subtitles" srclang="en" />
+  	<!-- <source src="'.$item.'" type="video/mp4"> -->
+	</video>
+
+	<table class="table">  
+		<thead class="thead-dark">
+    		<tr>
+    			<th scope="col"><?php echo "Nombre lista ".$_POST['nombre']?></th>
+    		</tr>
+		</thead>
+		<tbody id="tbody">
+		</tbody>
+	</table>
+
+</div>
+<hr><a href="index.php">Ir al inicio</a>
 </div>
 
 <script type="text/javascript">
 	var lista  = '<?php  echo $_POST['lista'];?>';
-	var lista = lista.split(" ");
+	lista = lista.split(" ");
 	var i =1;
 	lista.shift();
+	
+	var detalle_lista  = '<?php  echo $_POST['detlista'];?>';
+	detalle_lista = detalle_lista.split(",");
+	detalle_lista.shift();
+	var strtbody = "";
+	for (i=0; i<detalle_lista.length; i++){
+		strtbody += "<tr><td id='video_"+i+"'>";
+		strtbody += detalle_lista[i]+"</td></tr>";
+	}
+	$("#tbody").html(strtbody);
 	//alert(lista[0]);
+
+
+	i =1;
 	$("video").attr('src', lista[0]);
       
 	var vids = $("video"); 
@@ -52,11 +86,16 @@
 
 	$('video').on('ended',function(e){
       console.log('Video has ended!');
-      $("video").attr('src',lista[i]);
+      $("video").attr('src', lista[i]);
+
+      //$("#video_"+i).css('font-weight', 'normal');
+      
       i += 1;
+
       $("video").load();
       $("video").play();
     });
 
 
 </script>
+
