@@ -32,10 +32,12 @@
     $upload = \Cloudinary\Uploader::upload_large($_FILES['file']['tmp_name'], 
       array("folder" => $_POST['tipo'], 
       	"public_id" => $_POST['nombre'], 
-      	"overwrite" => TRUE, 
+        "overwrite" => TRUE, 
       	"invalidate" => TRUE,
       	"resource_type" => "video", 
-      	"chunk_size" => 6000000
+      	"chunk_size" => 6000000,
+        "raw_convert" => "google_speech:es-CL"
+        
       ));
 
   //$sql = "INSERT INTO video (nombre, tipo, secure_url) VALUES ( '".$_POST['nombre']."', '".$_POST['tipo']."', '".$upload['secure_url']."')";
