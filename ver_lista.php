@@ -43,7 +43,8 @@
         $sql2 = "SELECT nombre, tipo, secure_url FROM video WHERE nombre  LIKE '".$item."'";
         //echo $sql2;
         $result2 = $conn->query($sql2);
-        while ($fila2 = $result2->fetch_assoc()) {
+
+	while ($fila2 = $result2->fetch_assoc()) {
           echo "<li><a href='".$fila2['secure_url']."'>".$fila2['nombre']."</a></li>";
         }
       }

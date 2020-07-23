@@ -8,10 +8,10 @@ Class Database
 
     public function __construct()
     {
-        $this->user = "root";
+        $this->user = "eiam";
         $this->host = "localhost";
-        $this->pass = "";
-        $this->db = "cloudly";
+        $this->pass = "eiam3246";
+        $this->db = "eiam2020";
     }
     public function connect()
     {

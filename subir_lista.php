@@ -20,6 +20,7 @@
 
   //if ($_POST['detlista'][0] == ',') 
   //$_POST['detlista'] = substr($_POST['detlista'],1);
+  
   $sentencia->bind_param("ss",$_POST['nombre'],$_POST['detlista'] );
   $sentencia->execute();
 
@@ -33,9 +34,6 @@
 <div class="container" style="display: flex;">
 
 	<video width="80%" autoplay controls="false">
-    <track src="test.vtt" kind="subtitles" label="English Subtitles" srclang="en" />
-  	<!-- <source src="'.$item.'" type="video/mp4"> -->
-	 <button id="subtitles" type="button" data-state="subtitles">CC</button>
 	</video>
 	
 
