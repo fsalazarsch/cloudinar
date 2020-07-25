@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Crear lista de Reproduccion</title>
+  <title>Crear lista de Reproducción</title>
 </head>
 <body>
 
@@ -56,7 +56,7 @@
 
 <br/>
 <div class="container p-3 my-3 bg-primary text-white">
-  Crear Lista de Reproduccion
+  Crear Lista de Reproducción
 </div>
 <div class="container">
 <kbd>Para agregar un video a la lista pulse sobre el nombre del video, para quitarlo pulse otra vez sobre el video</kbd><hr>
@@ -102,9 +102,9 @@
     <hr>
     <form enctype="multipart/form-data"  method="POST" action="subir_lista.php">
       <div class="container form-group">
-        <input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendra la lista"  class="form-control" required="true"><br>
-        <input id="lista" type="hidden" name="lista" class="form-control"><br>
-        <input id="detlista" type="hidden" name="detlista" class="form-control"><br>
+        <input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendrá la lista"  class="form-control" required="true"><br>
+        <input id="lista" type="hidden" name="lista" class="form-control">
+        <input id="detlista" type="hidden" name="detlista" class="form-control">
         
         <p>Detalle de lista</p>
         <ol id="detalle_lista">
@@ -114,4 +114,4 @@
     </form>
 
 
-<a href="index.php">Ir al inicio</a>
+<h4><a href="index.php">Ir al inicio</a></h4><br>

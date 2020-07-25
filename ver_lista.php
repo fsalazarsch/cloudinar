@@ -23,7 +23,7 @@
 ?>
   <br/>
   <div class="container p-3 my-3 bg-primary text-white">
-    Ver Listas de Reproduccion
+    Ver Listas de Reproducción
   </div>
   <div class="container">
 
@@ -35,7 +35,7 @@
       //print_r($fila);
      
       echo "<tr>";
-      echo "<td>".$fila["nombre"]."</td>";
+      echo "<td><a href='subir_lista.php?nombre=".$fila['nombre']."'>".$fila["nombre"]."</a></td>";
       echo "<td><ol>";
 
       $lista =  explode(",", $fila["lista"]);
@@ -45,7 +45,7 @@
         $result2 = $conn->query($sql2);
 
 	while ($fila2 = $result2->fetch_assoc()) {
-          echo "<li><a href='".$fila2['secure_url']."'>".$fila2['nombre']."</a></li>";
+          echo "<li><a href='play.php?nombre=".$fila2['nombre']."'>".$fila2['nombre']."</a></li>";
         }
       }
       echo "</ol></td>";

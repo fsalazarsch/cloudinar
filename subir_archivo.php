@@ -19,9 +19,15 @@
 			</div><br>
 
 			<div class="form-group">
-				<input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendra el archivo"  class="form-control"><br>
+				<input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendra el archivo" class="form-control" required="true"><br>
 			</div>
 
+			 <div class="form-check">
+			  <label class="form-check-label">
+			    <input type="checkbox"  name="check" class="form-check-input" value="1">Video en Inglés
+			  </label>
+			</div>
+ 
 			<div class="form-group">
 				<label>Seleccione el tipo de Video</label><br>
 				<select name="tipo" class="form-control">
@@ -30,7 +36,7 @@
 					<option value="material">Material</option>
 				</select>
 			</div><br>
-			<kbd>NOTA: Luego de subir el video se ira automaticamente a la lista de subidos, si no proporciona un nombre para el video se le asignara un nombre automaticamente</kbd><hr>
+			<kbd>NOTA: Luego de subir el video se irá automáticamente a la lista de subidos</kbd><hr>
 	
 			<button id="submitButton" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Subir video</button>
 		</form>
