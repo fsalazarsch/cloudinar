@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION["user_id"])){
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,8 +12,8 @@
 <body>
 
 <?php
-  require_once "../vendor/autoload.php";
-  include './config/conneccion.php';
+  require_once "../../vendor/autoload.php";
+  include '../config/conneccion.php';
 
   $db = new Database();
   $conn = $db->connect();
@@ -27,7 +33,7 @@
     )
   );
 
-  include "./config/header.html"
+  include "../config/header.html"
 ?>
 
 
@@ -67,12 +73,12 @@
   $api = new \Cloudinary\Api();
   $results = $api->resources(array("resource_type" => "video", "max_results" => 30));
   echo '<div class="list-group">';
-  echo '<h3>Publicidad</h3>';
+  echo '<h3>Moda</h3>';
 
   foreach ($results["resources"] as $value) {
-    if (strpos($value["public_id"], 'publicidad') !== false) {
+    if (strpos($value["public_id"], 'moda') !== false) {
 
-       $nombre = str_replace("publicidad/", "", $value["public_id"]);
+       $nombre = str_replace("moda/", "", $value["public_id"]);
          echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a>";
              }
   }
@@ -105,7 +111,23 @@
         <input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendrá la lista"  class="form-control" required="true"><br>
         <input id="lista" type="hidden" name="lista" class="form-control">
         <input id="detlista" type="hidden" name="detlista" class="form-control">
-        
+        <select class="custom-select" id="user_id" name="user_id" required="true">
+    
+        <option value="" selected>Elige...</option>
+
+        <?php
+
+          $sql = "SELECT user_id, user_name FROM users  WHERE user_type = 2";
+          $result = $conn->query($sql);
+
+          while ($row2 = $result->fetch_assoc()){
+            echo '<option value="'.$row2['user_id'].'">'.$row2['user_name'].'</option>';
+          }
+
+        ?>
+        </select>
+        <br>
+
         <p>Detalle de lista</p>
         <ol id="detalle_lista">
         </ol>
@@ -114,4 +136,11 @@
     </form>
 
 
-<h4><a href="index.php">Ir al inicio</a></h4><br>
+<h4><a href="../index.php">Ir al inicio</a></h4><br>
+
+<?php
+}
+else
+  header('Location: /cloud/index.php');
+
+?>

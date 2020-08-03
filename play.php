@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+
+if (isset($_SESSION["user_id"])){
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -14,7 +18,7 @@ error_reporting(E_ALL);
   $sql = "SELECT  nombre, tipo, secure_url, subtitle FROM video WHERE nombre like '".$_GET["nombre"]."' LIMIT 1";
   $result = $conn->query($sql);
 
-    $row = $result->fetch_assoc();
+  $row = $result->fetch_assoc();
 
 ?>
 
@@ -23,5 +27,9 @@ error_reporting(E_ALL);
     <track label="English" kind="subtitles" srclang="en" src="<?php echo  $row["subtitle"]; ?>" default>   
   </video>
 
+<?php
+}
+else
+  header('Location: /cloud/index.php');
 
-
+?>

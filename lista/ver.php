@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION["user_id"])){
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,10 +12,10 @@
 </head>
 <body>
 <?php
-  require_once "../vendor/autoload.php";
+  require_once "../../vendor/autoload.php";
 
-  include './config/conneccion.php';
-  include "./config/header.html";
+  include '../config/conneccion.php';
+  include "../config/header.html";
 
 
   $db = new Database();
@@ -35,7 +42,7 @@
       //print_r($fila);
      
       echo "<tr>";
-      echo "<td><a href='subir_lista.php?nombre=".$fila['nombre']."'>".$fila["nombre"]."</a></td>";
+      echo "<td><a href='play.php?nombre=".$fila['nombre']."'>".$fila["nombre"]."</a></td>";
       echo "<td><ol>";
 
       $lista =  explode(",", $fila["lista"]);
@@ -45,7 +52,7 @@
         $result2 = $conn->query($sql2);
 
 	while ($fila2 = $result2->fetch_assoc()) {
-          echo "<li><a href='play.php?nombre=".$fila2['nombre']."'>".$fila2['nombre']."</a></li>";
+          echo "<li><a href='../video/play.php?nombre=".$fila2['nombre']."'>".$fila2['nombre']."</a></li>";
         }
       }
       echo "</ol></td>";
@@ -55,6 +62,12 @@
       echo "</table>";
 ?>
 <hr>
-<a href="index.php">Ir al inicio</a>
+<a href="../index.php">Ir al inicio</a>
 </div>
 
+<?php
+}
+else
+  header('Location: /cloud/index.php');
+
+?>

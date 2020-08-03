@@ -1,10 +1,16 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION["user_id"])){
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Subir Video Nuevo</title>
 </head>
 <body>
-	<?php include "./config/header.html" ?>
+	<?php include "../config/header.html" ?>
 
 	<br/>
 	<div class="container p-3 my-3 bg-primary text-white">
@@ -31,7 +37,7 @@
 			<div class="form-group">
 				<label>Seleccione el tipo de Video</label><br>
 				<select name="tipo" class="form-control">
-					<option value="publicidad">Publicidad</option>
+					<option value="moda">Moda</option>
 					<option value="contenido">Contenido</option>
 					<option value="material">Material</option>
 				</select>
@@ -58,3 +64,10 @@
 		</div>
 	</div>
 </body>
+
+<?php
+}
+else
+  header('Location: /cloud/index.php');
+
+?>

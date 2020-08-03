@@ -1,29 +1,42 @@
 <?php
 
+session_start();
+
+if (isset($_SESSION["user_id"])){
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-  require_once "../vendor/autoload.php";
+  require_once "../../vendor/autoload.php";
 
-  include './config/conneccion.php';
+  include '../config/conneccion.php';
 
 if($_POST){
+
+
+  $dirsub = "../subs";
+  $tmp_name = $_FILES["file"]["tmp_name"];
+  $name = $_FILES["file"]["name"];
+  move_uploaded_file($tmp_name, "$dirsub/$name"); 
+
+  $rutasub = $dirsub."/".$name;
 
   $db = new Database();
   $conn = $db->connect();
 
   $sql = "UPDATE video SET subtitle= ? WHERE nombre like ?";
-  echo $sql;
   
+
+
   $sentencia = $conn->prepare($sql);
-  $sentencia->bind_param("ss", $_FILES['file']['name'], $_POST["nombre"] );
+  $sentencia->bind_param("ss", $rutasub, $_POST["nombre"] );
   $sentencia->execute();
 
-  header('Location: /cloud/upload.php');
+  header('Location: /cloud/video/listar.php');
 
 }
-  include "./config/header.html";
+  include "../config/header.html";
 
 
   echo '<div class="container">';
@@ -36,6 +49,11 @@ if($_POST){
   echo '<button id="submitButton" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Subir video</button>
     </form>
   </div>';
+
+
+}
+else
+  header('Location: /cloud/index.php');
 
 ?>
 
