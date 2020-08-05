@@ -19,12 +19,12 @@ if (isset($_SESSION["user_id"])){
 <div class="container">
   <div class="post-comments">
 
-      <div class="form-group">
-        <label for="comment">Tu Comentario</label>
-        <textarea id="padre" class="form-control" rows="3"></textarea>
+      <div class="form-group" style="display: -webkit-box">
+        <textarea id="padre" class="form-control" rows="3" style="resize: none;width: 50%;margin-right :10px" placeholder=" Tu Comentario"></textarea>
+      
+      <button onclick="agregar_comentario('padre', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>, '')" class="btn btn-success">Enviar</button>
       </div>
-      <button onclick="agregar_comentario('padre', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>, '')" class="btn btn-default">Enviar</button>
-
+      
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -32,8 +32,12 @@ error_reporting(E_ALL);
 
   $db = new Database();
   $conn = $db->connect();
+  $res = $conn->query("SELECT comment_id FROM comments WHERE Lista_id = ".$id_lista);
+    $nRows = $res->num_rows;
 
-  $sql = "SELECT comment_id, descripcion, votes, comment_father_id, lista_id, user_id, fecha_hora FROM comments WHERE lista_id = ".$id_lista." AND  comment_father_id IS NULL";
+    echo '<p>'. $nRows.' Comentarios</p>';
+
+  $sql = "SELECT comment_id, descripcion, votes, comment_father_id, lista_id, A.user_id, fecha_hora, B.user_name FROM comments A, users B WHERE  B.user_id = A.user_id AND lista_id = ".$id_lista." AND  comment_father_id IS NULL ORDER BY votes DESC";
   $result = $conn->query($sql);
 
     while($row = $result->fetch_assoc()){
@@ -44,9 +48,7 @@ error_reporting(E_ALL);
 
       <div class="media" style="width: 100%">
         <div class="media-heading">
-          <button class="btn btn-default btn-collapse btn-xs" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
-            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button> 
-            <span class="label label-info"><?php echo $row['votes']?></span><br> <?php echo date('d/m/Y', strtotime($row['fecha_hora']));?>
+            <span class="label label-info"><?php echo $row['votes']?></span><br>
           </div>
           <div class="panel-collapse collapse in">
             <div class="media-left">
@@ -55,20 +57,19 @@ error_reporting(E_ALL);
               </div>
             </div>
             <div class="media-body">
-              <p> <?php echo $row['descripcion']?></p>
+              <p> <b style="color: blue"><?php echo $row['user_name']?></b> (<?php echo date('d/m/Y', strtotime($row['fecha_hora']));?>)<br> <?php echo $row['descripcion']?></p>
               <div class="comment-meta">
 
               <span>
-                        <a onclick="like(<?php echo $row['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, 1);">Like</a>
-                        <a onclick="like(<?php echo $row['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, -1);">Dislike</a>
+                        <a onclick="like(<?php echo $row['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, 1);"><i class="fa fa-2x fa-thumbs-up"></i></a>
+                        <a onclick="like(<?php echo $row['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, -1);"><i class="fa fa-2x fa-thumbs-down"></i></a>
                         <a class="" role="button" data-toggle="collapse" onclick="aparecer('comentario_<?php echo $row['comment_id']?>')" aria-expanded="false" aria-controls="collapseExample">Comentar</a>
                       </span>
               <div class="collapse" id="comentario_<?php echo $row['comment_id']?>">
-                    <div class="form-group">
-                      <label for="comment">Agregar comentario</label>
-                      <textarea id="hijo_<?php echo $row['comment_id'] ?>" class="form-control" rows="3"></textarea>
-                    </div>
-                    <button  onclick="agregar_comentario('hijo_<?php echo $row['comment_id'] ?>', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>, <?php echo $row['comment_id'] ?>)" class="btn btn-default">Post</button>
+                    <div class="form-group" style="display: -webkit-box">
+                      <textarea id="hijo_<?php echo $row['comment_id'] ?>" class="form-control" rows="3" style="resize: none;margin-right :10px" placeholder=" Agregar Comentario"></textarea>
+                    
+                    <button  onclick="agregar_comentario('hijo_<?php echo $row['comment_id'] ?>', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>, <?php echo $row['comment_id'] ?>)" class="btn btn-success">Post</button></div>
                 </div>
               </div>
 
@@ -76,7 +77,7 @@ error_reporting(E_ALL);
 
             <?php
 
-            $sql = "SELECT comment_id, descripcion, votes, lista_id, user_id, fecha_hora FROM comments WHERE lista_id = ".$id_lista." AND  comment_father_id = ".$row['comment_id'];
+            $sql = "SELECT comment_id, descripcion, votes, comment_father_id, lista_id, A.user_id, fecha_hora, B.user_name FROM comments A, users B WHERE  B.user_id = A.user_id AND lista_id = ".$id_lista." AND  comment_father_id = ".$row['comment_id'];
               $result2 = $conn->query($sql);
               while($row2 = $result2->fetch_assoc()){
 
@@ -84,9 +85,7 @@ error_reporting(E_ALL);
 
                   <div class="media" style="width: 100%">
         <div class="media-heading">
-          <button class="btn btn-default btn-collapse btn-xs" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
-            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button> 
-            <span class="label label-info"><?php echo $row2['votes']?></span><br> <?php echo date('d/m/Y', strtotime($row2['fecha_hora']));?>
+            <span class="label label-info"><?php echo $row2['votes']?></span><br> 
           </div>
           <div class="panel-collapse collapse in">
             <div class="media-left">
@@ -94,12 +93,12 @@ error_reporting(E_ALL);
               </div>
             </div>
             <div class="media-body">
-              <p> <?php echo $row2['descripcion']?></p>
+              <p> <b style="color: blue"><?php echo $row2['user_name']?></b> (<?php echo date('d/m/Y', strtotime($row2['fecha_hora']));?>)<br> <?php echo $row2['descripcion']?></p>
                             <div class="comment-meta">
 
               <span>
-                        <a onclick="like(<?php echo $row2['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, 1);">Like</a>
-                        <a onclick="like(<?php echo $row2['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, -1);">Dislike</a>
+                        <a onclick="like(<?php echo $row2['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, 1);"><i class="fa fa-2x fa-thumbs-up"></i></a>
+                        <a onclick="like(<?php echo $row2['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, -1);"><i class="fa fa-2x fa-thumbs-down"></i></a>
                         
                       </span>
               </div>       

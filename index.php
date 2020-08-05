@@ -23,7 +23,7 @@ if($_POST){
   //$passwd = hash('sha256', $_POST["passwd"]);
   $passwd =  $_POST["passwd"];
 
-  $sql = "SELECT user_id, user_name FROM users WHERE user_name like '".$_POST["nombre"]."' and user_password like '".$passwd."' LIMIT 1";
+  $sql = "SELECT user_id, user_name FROM users WHERE user_email like '".$_POST["nombre"]."' and user_password like '".$passwd."' LIMIT 1";
   //echo $sql;
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();

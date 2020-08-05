@@ -21,6 +21,7 @@ if (isset($_SESSION["user_id"])){
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
+  margin-left: 15px;
 }
 
 .darker {
@@ -51,12 +52,11 @@ if (isset($_SESSION["user_id"])){
 <div class="container">
   <div class="post-comments">
 
-      <div class="form-group">
-        <label for="comment">Tu Chat</label>
-        <textarea id="padre2" class="form-control" rows="3"></textarea>
+      <div class="form-group" style="display: -webkit-box">
+        <textarea id="padre2" class="form-control" rows="3" style="resize: none;width: 50%;margin-right :10px" placeholder="Tu Chat" ></textarea>
+      
+      <button onclick="agregar_chat('padre2', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>)" class="btn btn-success">Enviar</button>
       </div>
-      <button onclick="agregar_chat('padre2', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>)" class="btn btn-default">Enviar</button>
-
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -65,22 +65,24 @@ error_reporting(E_ALL);
   $db = new Database();
   $conn = $db->connect();
 
-  $sql = "SELECT id, msg, fecha_hora, A.user_id, B.user_name FROM chat A, users B WHERE B.user_id = A.user_id  AND lista_id = ".$id_lista;
+  $sql = "SELECT id, msg, fecha_hora, A.user_id, B.user_name FROM chat A, users B WHERE B.user_id = A.user_id  AND lista_id = ".$id_lista." ORDER BY fecha_hora DESC";
   $result = $conn->query($sql);
+
+  echo '<p>'.$result->num_rows.' Mensajes de Chats</p>';
 
   while($row = $result->fetch_assoc()){
     if($propietario != $row["user_id"]){
-      echo '<div class="row"><div class="containerchat bg-info">';
-      echo '<span><b>'.$row["user_name"].'</b></span>';
+      echo '<div class="row"><div class="containerchat">';
+      echo '<span><b style="color: blue">'.$row["user_name"].':</b></span>';
       echo '<p>'.$row["msg"].'</p>';
       echo '<span class="time-right">'.$row["fecha_hora"].'</span>';
       echo '</div></div>';
     }
     else{
-      echo '<div class="row"><div class="containerchat bg-primary" style="text-align: right;">';
-      echo '<span><b>'.$row["user_name"].'</b></span>';
+      echo '<div class="row"><div class="containerchat">';
+      echo '<span><b style="color: darkgreen">'.$row["user_name"].':</b></span>';
       echo '<p>'.$row["msg"].'</p>';
-      echo '<span class="time-left">'.$row["fecha_hora"].'</span>';
+      echo '<span class="time-right">'.$row["fecha_hora"].'</span>';
       echo '</div></div>';      
     }
   }

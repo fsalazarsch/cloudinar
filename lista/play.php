@@ -18,7 +18,12 @@
 	$subs  = "";
 	$tipos  = "";
 
-	$sql = "SELECT id, lista, user_id FROM lista WHERE nombre like '".$nombre."' LIMIT 1";
+	$sql = "UPDATE lista set vistas = vistas + 1 WHERE nombre like ?";
+	$sentencia = $conn->prepare($sql);
+  	$sentencia->bind_param("s", $nombre );
+  	$sentencia->execute();
+
+	$sql = "SELECT id, lista, A.user_id, B.user_name, vistas FROM lista A, users B WHERE A.user_id = B.user_id AND nombre like '".$nombre."' LIMIT 1";
 	$result = $conn->query($sql);  
 
 
@@ -29,7 +34,8 @@
 	$auxllista = explode(",", $detlista);
 	$id_lista =  $row["id"];
 	$propietario =  $row["user_id"];
-
+	$nombre_propietario = $row["user_name"];
+	$vistas = $row["vistas"];
 
 	foreach ($auxllista as $l) {
 		if( $l != ""){
@@ -60,27 +66,16 @@
 <br>
 <div class="container">
 <?php 
-	echo "<h3>".$nombre."</h3>"; 
+	echo "<h3>".$nombre." - ".$nombre_propietario." : ".$vistas." visitas</h3>"; 
 ?>
 <div class="container" style="display: flex;">
 
-	<video style="width: 80%" autoplay crossorigin="anonymous" controls="false">
+	<button id="buttonplay" onclick="$('video').click();$(this).hide();" style="position: absolute;width: inherit;height: 400px;opacity: 0.5;border: none;"><i class="fa fa-5x fa-play-circle" style ="color:#357ebd;"></i></i></button>
+	<video style="width: inherit;max-height: 400px;" autoplay crossorigin="anonymous" controls="false">
 	</video>
-	<button class="bt btn-primary" id="buttonplay" onclick="$('video').click();$(this).hide();" style="position: absolute"><i class="fa fa-play"></i></button>
-
-	<table class="table">  
-		<thead class="thead-dark">
-    		<tr>
-    			<th scope="col"><?php echo "Nombre lista ".$nombre ?></th>
-    		</tr>
-		</thead>
-		<tbody id="tbody">
-		</tbody>
-	</table>
 
 </div>
-<hr><a href="../index.php">Ir al inicio</a>
-</div>
+</div><br>
 
 <script type="text/javascript">
 	var lista  = '<?php  echo $lista;?>';
@@ -101,7 +96,7 @@
 	detalle_lista = detalle_lista.split(",");
 	detalle_lista.shift();
 
-	console.log(detalle_lista);
+	//console.log(detalle_lista);
 
 	var subs  = '<?php  echo $subs;?>';
 	subs = subs.split(",");
@@ -151,16 +146,15 @@
       
       i += 1;
 
-      $("video").load();
-      $("video").play();
+      //$("video").load();
+      //$("video").play();
     });
 
-
 </script>
-
-  <ul class="nav nav-tabs" style="padding-left: 10%;">
-    <li class="active"><a data-toggle="tab" href="#home">Comentarios</a></li>
-    <li><a data-toggle="tab" href="#chat">Chat</a></li>
+	
+  <ul class="nav nav-tabs" style="padding-left: 10%;" role="tablist">
+    <li><a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Comentarios</a></li>
+    <li><a class="nav-link" id="home-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="true">Chat en vivo</a></li>
   </ul>
 
   <div class="tab-content">

@@ -15,6 +15,22 @@ error_reporting(E_ALL);
   $db = new Database();
   $conn = $db->connect();
 
+  $sql = "SELECT cloudname, api_key, api_secret FROM config LIMIT 1";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows == 1) 
+    $row = $result->fetch_assoc();
+
+
+  \Cloudinary::config(
+    array(
+      "cloud_name" => $row["cloudname"],
+      "api_key" => $row["api_key"],
+      "api_secret" => $row["api_secret"]
+    )
+  );
+
+
   $sql = "SELECT  nombre, tipo, secure_url, subtitle, ingles FROM video WHERE nombre like '".$_GET["nombre"]."' LIMIT 1";
   $result = $conn->query($sql);
 
@@ -31,11 +47,19 @@ error_reporting(E_ALL);
   
 
 ?>
+  <link href="https://unpkg.com/cloudinary-video-player@1.4.0/dist/cld-video-player.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/cloudinary-core@2.8.2/cloudinary-core-shrinkwrap.min.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/cloudinary-video-player@1.4.0/dist/cld-video-player.min.js" 
+    type="text/javascript"></script>
 
-  <video width="100%"controls  crossorigin="anonymous" style="height: 100%;">
+  <?php
+  echo cl_video_tag($row["secure_url"], array("controls" => true), array("overlay"=>array("resource_type"=>"subtitles", "public_id"=> $subt)));
+  ?>
+
+  <!--video width="100%"controls  crossorigin="anonymous" style="height: 100%;">
   <source src=" <?php echo  $row["secure_url"]; ?> ">
     <track label="English" kind="subtitles" srclang="en" src="<?php echo $subt; ?>" default>   
-  </video>
+  </video-->
 
 <?php
 }
