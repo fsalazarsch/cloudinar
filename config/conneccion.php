@@ -16,6 +16,7 @@ Class Database
     public function connect()
     {
         $link = mysqli_connect($this->host, $this->user, $this->pass, $this->db);
+        mysqli_set_charset($link, "utf8");
         return $link;
     }
 }

@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Reproduciendo...</title>
-</head>
-<body>
-<!--link rel="stylesheet" href="video.css"-->
+<?php session_start(); ?>
 
+<body>
 <?php
 	include "../config/header.html";
 	include '../config/conneccion.php';
+	include '../config/navbar.php';
 
 	$db = new Database();
 	$conn = $db->connect();
@@ -58,7 +54,7 @@
 	}
 	
 
-	session_start();
+	
 
 	if (isset($_SESSION["user_id"])){
 ?>
@@ -66,12 +62,12 @@
 <br>
 <div class="container">
 <?php 
-	echo "<h3>".$nombre." - ".$nombre_propietario." : ".$vistas." visitas</h3>"; 
+	echo "<h3><center>".$nombre." - ".$nombre_propietario." - ".$vistas." visitas</center></h3>"; 
 ?>
-<div class="container" style="display: flex;">
+<div class="container" style="position:	relative">
 
-	<button id="buttonplay" onclick="$('video').click();$(this).hide();" style="position: absolute;width: inherit;height: 400px;opacity: 0.5;border: none;"><i class="fa fa-5x fa-play-circle" style ="color:#357ebd;"></i></i></button>
-	<video style="width: inherit;max-height: 400px;" autoplay crossorigin="anonymous" controls="false">
+	<button onmouseover="$(this).child().css('opacity' : '1.0')" onclick="$('video').css('visibility', 'visible');$('video').click();$(this).hide();" style="position: absolute;width: inherit;height: 100%;opacity: 1.0;border: none;"><i class="fa fa-5x fa-play-circle" style ="color:#357ebd;"></i></button>
+	<video style="width: 100%; visibility: hidden;" crossorigin="anonymous"  controls="false">
 	</video>
 
 </div>
@@ -134,6 +130,7 @@
 	$('video').on('ended',function(){
       console.log('Video has ended!');
       $("video").attr('src', lista[i]);
+      $("video").attr('autoplay', 'autoplay');
       $("video").html('<track label="English" kind="subtitles" srclang="en" src="'+subs[i]+'" default>');
       if(tipos[i] != 'moda'){
       	$("video").attr("controls", "controls");
@@ -146,9 +143,19 @@
       
       i += 1;
 
-      //$("video").load();
-      //$("video").play();
+      $("video").load();
+      $("video").play();
     });
+
+    var image = document.getElementById("img");
+
+    function updateChat() {
+        $("#chatreload").load("play.php?nombre=<?php echo $nombre?> #chatreload");
+        console.log("update");
+    }
+
+    setInterval(updateChat, 5000);
+
 
 </script>
 	
@@ -166,7 +173,10 @@
     </div>	
   </div>
 
+</body>
+<br><br><br>
 
+<?php include "../config/footer.php" ?>
 
 <?php
 	}

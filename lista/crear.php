@@ -1,17 +1,15 @@
-<?php
-
-session_start();
-
-if (isset($_SESSION["user_id"])){
-?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Crear lista de Reproducción</title>
-</head>
+<?php  session_start(); ?>
+<?php include "../config/header.html" ?>
+<?php include "../config/navbar.php" ?>
 <body>
 
 <?php
+if (isset($_SESSION["user_id"])){
+
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+
   require_once "../../vendor/autoload.php";
   include '../config/conneccion.php';
 
@@ -60,11 +58,9 @@ if (isset($_SESSION["user_id"])){
   }
 </script>
 
-<br/>
-<div class="container p-3 my-3 bg-primary text-white">
-  Crear Lista de Reproducción
-</div>
+
 <div class="container">
+<h3>Crear Lista de Reproducción</h3>
 <kbd>Para agregar un video a la lista pulse sobre el nombre del video, para quitarlo pulse otra vez sobre el video</kbd><hr>
 
 
@@ -136,8 +132,10 @@ if (isset($_SESSION["user_id"])){
     </form>
 
 
-<h4><a href="../index.php">Ir al inicio</a></h4><br>
-
+</div>
+<br><br><br>
+</body>
+<?php include "../config/footer.php" ?>
 <?php
 }
 else

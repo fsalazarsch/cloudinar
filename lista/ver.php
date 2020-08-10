@@ -1,21 +1,14 @@
-<?php
-
-session_start();
-
-if (isset($_SESSION["user_id"])){
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Ver videos</title>
-</head>
+<?php  session_start(); ?>
+<?php include "../config/header.html" ?>
+<?php include "../config/navbar.php" ?>
 <body>
-<?php
-  require_once "../../vendor/autoload.php";
 
+
+<?php
+if (isset($_SESSION["user_id"])){
+
+  require_once "../../vendor/autoload.php";
   include '../config/conneccion.php';
-  include "../config/header.html";
 
 
   $db = new Database();
@@ -29,10 +22,8 @@ if (isset($_SESSION["user_id"])){
 
 ?>
   <br/>
-  <div class="container p-3 my-3 bg-primary text-white">
-    Ver Listas de Reproducción
-  </div>
   <div class="container">
+  <h3>Ver Listas de Reproducción</h3>
 
 <?php
    echo "<table class='table table-striped'>";
@@ -61,10 +52,10 @@ if (isset($_SESSION["user_id"])){
     }
       echo "</table>";
 ?>
-<hr>
-<a href="../index.php">Ir al inicio</a>
 </div>
-
+</body>
+<br><br><br>
+<?php include "../config/footer.php" ?>
 <?php
 }
 else

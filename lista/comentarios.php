@@ -48,7 +48,6 @@ error_reporting(E_ALL);
 
       <div class="media" style="width: 100%">
         <div class="media-heading">
-            <span class="label label-info"><?php echo $row['votes']?></span><br>
           </div>
           <div class="panel-collapse collapse in">
             <div class="media-left">
@@ -57,17 +56,27 @@ error_reporting(E_ALL);
               </div>
             </div>
             <div class="media-body">
-              <p> <b style="color: blue"><?php echo $row['user_name']?></b> (<?php echo date('d/m/Y', strtotime($row['fecha_hora']));?>)<br> <?php echo $row['descripcion']?></p>
+              <p> 
+                 <?php if( $row["user_id"] != $propietario) { ?>
+                    <b style="color: blue">
+                 <?php } else{ ?>
+                    <b style="color: darkgreen">
+                 
+                 <?php }?>
+                  
+                  <?php echo $row['user_name']?></b> (<?php echo date('d/m/Y', strtotime($row['fecha_hora']));?>)<br> <?php echo $row['descripcion']?></p>
               <div class="comment-meta">
 
               <span>
+                        <span class="label label-info" style="padding :.1em 0.6em 0.1em;font-size: 100%"><?php echo $row['votes']?></span>
+
                         <a onclick="like(<?php echo $row['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, 1);"><i class="fa fa-2x fa-thumbs-up"></i></a>
-                        <a onclick="like(<?php echo $row['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, -1);"><i class="fa fa-2x fa-thumbs-down"></i></a>
-                        <a class="" role="button" data-toggle="collapse" onclick="aparecer('comentario_<?php echo $row['comment_id']?>')" aria-expanded="false" aria-controls="collapseExample">Comentar</a>
+                        <a onclick="like(<thumbs-up?php echo $row['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, -1);"><i class="fa fa-2x fa-thumbs-down"></i></a>
+                        <a class="" role="button" data-toggle="collapse" onclick="aparecer('comentario_<?php echo $row['comment_id']?>')" aria-expanded="false" aria-controls="collapseExample">Responder</a>
                       </span>
               <div class="collapse" id="comentario_<?php echo $row['comment_id']?>">
                     <div class="form-group" style="display: -webkit-box">
-                      <textarea id="hijo_<?php echo $row['comment_id'] ?>" class="form-control" rows="3" style="resize: none;margin-right :10px" placeholder=" Agregar Comentario"></textarea>
+                      <textarea id="hijo_<?php echo $row['comment_id'] ?>" class="form-control" rows="3" style="resize: none;margin-right :10px" placeholder=" Agregar comentario"></textarea>
                     
                     <button  onclick="agregar_comentario('hijo_<?php echo $row['comment_id'] ?>', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>, <?php echo $row['comment_id'] ?>)" class="btn btn-success">Post</button></div>
                 </div>
@@ -77,7 +86,7 @@ error_reporting(E_ALL);
 
             <?php
 
-            $sql = "SELECT comment_id, descripcion, votes, comment_father_id, lista_id, A.user_id, fecha_hora, B.user_name FROM comments A, users B WHERE  B.user_id = A.user_id AND lista_id = ".$id_lista." AND  comment_father_id = ".$row['comment_id'];
+            $sql = "SELECT comment_id, descripcion, votes, comment_father_id, lista_id, A.user_id, fecha_hora, B.user_name FROM comments A, users B WHERE  B.user_id = A.user_id AND lista_id = ".$id_lista." AND  comment_father_id = ".$row['comment_id']." ORDER BY votes DESC";
               $result2 = $conn->query($sql);
               while($row2 = $result2->fetch_assoc()){
 
@@ -85,7 +94,7 @@ error_reporting(E_ALL);
 
                   <div class="media" style="width: 100%">
         <div class="media-heading">
-            <span class="label label-info"><?php echo $row2['votes']?></span><br> 
+            
           </div>
           <div class="panel-collapse collapse in">
             <div class="media-left">
@@ -93,10 +102,18 @@ error_reporting(E_ALL);
               </div>
             </div>
             <div class="media-body">
-              <p> <b style="color: blue"><?php echo $row2['user_name']?></b> (<?php echo date('d/m/Y', strtotime($row2['fecha_hora']));?>)<br> <?php echo $row2['descripcion']?></p>
+              <p> 
+              <?php if( $row["user_id"] != $propietario) { ?>
+                <b style="color: blue">
+              <?php } else{ ?>
+                <b style="color: darkgreen">
+                <?php }?>
+
+                  <?php echo $row2['user_name']?></b> (<?php echo date('d/m/Y', strtotime($row2['fecha_hora']));?>)<br> <?php echo $row2['descripcion']?></p>
                             <div class="comment-meta">
 
               <span>
+                        <span class="label label-info" style="padding :.1em 0.6em 0.1em;font-size: 100%"><?php echo $row2['votes']?></span>
                         <a onclick="like(<?php echo $row2['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, 1);"><i class="fa fa-2x fa-thumbs-up"></i></a>
                         <a onclick="like(<?php echo $row2['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, -1);"><i class="fa fa-2x fa-thumbs-down"></i></a>
                         
@@ -155,7 +172,7 @@ function like(comment_id, user_id, x){
 
 function agregar_comentario(id_comment, user_id, id_lista, id_padre){
   var coment =  document.getElementById(id_comment).value;
-
+   if( coment.length >= 2){
   $.post({
     url: "agregar_comentario.php",
     data: {comment : coment, id_lista : id_lista, user_id: user_id, id_padre: id_padre},
@@ -165,7 +182,7 @@ function agregar_comentario(id_comment, user_id, id_lista, id_padre){
   
   });
   $("#comentarios").load("play.php?nombre=<?php echo $nombre?> #comentarios");
-
+  }
 }
 
 

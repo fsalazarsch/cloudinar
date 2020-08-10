@@ -1,23 +1,18 @@
+<?php  session_start(); ?>
+<?php include "../config/header.html" ?>
+<?php include "../config/navbar.php" ?>
+<body>
+
 <?php
-
-session_start();
-
 if (isset($_SESSION["user_id"])){
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Subir Video Nuevo</title>
-</head>
+
 <body>
-	<?php include "../config/header.html" ?>
 
 	<br/>
-	<div class="container p-3 my-3 bg-primary text-white">
-		Subir Video
-	</div>
 
 	<div class="container">
+		<h3> Subir Video</h3>
 		<form enctype="multipart/form-data"  method="POST" action="upload.php">
 			<div class="form-group">
 				<label for="file">Archivo</label>
@@ -63,7 +58,9 @@ if (isset($_SESSION["user_id"])){
 			</div>
 		</div>
 	</div>
+<br><br><br><br>
 </body>
+<?php include "../config/footer.php" ?>
 
 <?php
 }

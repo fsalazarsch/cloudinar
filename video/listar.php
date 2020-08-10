@@ -1,20 +1,11 @@
-<?php
-
-session_start();
-
-if (isset($_SESSION["user_id"])){
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Ver videos</title>
-
-</head>
+<?php  session_start(); ?>
+<?php include "../config/header.html" ?>
+<?php include "../config/navbar.php" ?>
 <body>
 
-
 <?php
+if (isset($_SESSION["user_id"])){
+
 
 
 ini_set('display_errors', 1);
@@ -43,15 +34,11 @@ error_reporting(E_ALL);
     )
   );
 
-
-  include "../config/header.html";
-
 ?>
   <br/>
-  <div class="container p-3 my-3 bg-primary text-white">
-    Ver Lista de Videos
-  </div>
   <div class="container">
+  <h3>Ver Lista de Videos</h3>
+
   <kbd>Para ver un video pulse sobre el nombre del video</kbd><hr>
 
   <?php
@@ -62,7 +49,7 @@ error_reporting(E_ALL);
     $result = $conn->query($sql);
     
     echo '<div class="list-group">';
-    echo '<h3>Publicidad</h3>';
+    echo '<h4>Publicidad</h4>';
     while ( $value = $result->fetch_assoc()) {
       echo "<a href='".$value["secure_url"]."' class='list-group-item list-group-item-action'>".str_replace("moda/", "", $value["nombre"])."</a>";
         echo "<div><a  href='play.php?nombre=".str_replace("moda/", "", $value["nombre"])."' class='btn btn-primary'>Ver</a>";
@@ -74,7 +61,7 @@ error_reporting(E_ALL);
           echo "<button onclick='borrar(\"".$value["nombre"]."\", \"moda\")' class='btn btn-danger' style='margin-left: 5px;'>Borrar</button></div>";
         }
 
-    echo '</div><br><div class="list-group"><h3>Contenido</h3>';
+    echo '</div><br><div class="list-group"><h4>Contenido</h4>';
 
 
     $sql = "SELECT secure_url, nombre, ingles, subtitle FROM video where tipo like 'contenido'";
@@ -95,7 +82,7 @@ error_reporting(E_ALL);
 
     }
 
-    echo '</div><br><div class="list-group"><h3>Material</h3>';
+    echo '</div><br><div class="list-group"><h4>Material</h4>';
 
     $sql = "SELECT secure_url, nombre, ingles, subtitle FROM video where tipo like 'material'";
     $result = $conn->query($sql);
@@ -117,9 +104,9 @@ error_reporting(E_ALL);
     }
 ?>
 </div>
-<hr>
+</div>
 
-<h4><a href="../index.php">Ir al inicio</a></h4><br>
+
 <script type="text/javascript">
 function borrar(name, tipo) {
    // name = name.split("/");
@@ -136,7 +123,9 @@ function borrar(name, tipo) {
  }
 </script>
 </body>
-</html>
+<br><br><br>
+<?php include "../config/footer.php" ?>
+
 <?php
 }
 else

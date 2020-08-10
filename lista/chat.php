@@ -53,7 +53,7 @@ if (isset($_SESSION["user_id"])){
   <div class="post-comments">
 
       <div class="form-group" style="display: -webkit-box">
-        <textarea id="padre2" class="form-control" rows="3" style="resize: none;width: 50%;margin-right :10px" placeholder="Tu Chat" ></textarea>
+        <textarea id="padre2" class="form-control" rows="3" style="resize: none;width: 50%;margin-right :10px" placeholder="Tu Chat" minlength="2"></textarea>
       
       <button onclick="agregar_chat('padre2', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>)" class="btn btn-success">Enviar</button>
       </div>
@@ -67,27 +67,26 @@ error_reporting(E_ALL);
 
   $sql = "SELECT id, msg, fecha_hora, A.user_id, B.user_name FROM chat A, users B WHERE B.user_id = A.user_id  AND lista_id = ".$id_lista." ORDER BY fecha_hora DESC";
   $result = $conn->query($sql);
-
+  echo '<div id="chatreload">';
   echo '<p>'.$result->num_rows.' Mensajes de Chats</p>';
 
   while($row = $result->fetch_assoc()){
     if($propietario != $row["user_id"]){
       echo '<div class="row"><div class="containerchat">';
-      echo '<span><b style="color: blue">'.$row["user_name"].':</b></span>';
-      echo '<p>'.$row["msg"].'</p>';
-      echo '<span class="time-right">'.$row["fecha_hora"].'</span>';
+      echo '<span><b style="color: blue">'.$row["user_name"].'</b> ('.date('d/m/Y H:i',strtotime($row["fecha_hora"])).') </span><br>';
+      echo '<span>'.$row["msg"].'</span>';
       echo '</div></div>';
     }
     else{
       echo '<div class="row"><div class="containerchat">';
-      echo '<span><b style="color: darkgreen">'.$row["user_name"].':</b></span>';
-      echo '<p>'.$row["msg"].'</p>';
-      echo '<span class="time-right">'.$row["fecha_hora"].'</span>';
+      echo '<span><b style="color: darkgreen">'.$row["user_name"].':</b> ('.date('d/m/Y H:i',strtotime($row["fecha_hora"])).')</span><br>';
+      echo '<span>'.$row["msg"].'</span>';
       echo '</div></div>';      
     }
   }
-?>
+echo '</div>';
 
+?>
 </div>
 </div>
 
@@ -99,15 +98,16 @@ error_reporting(E_ALL);
 function agregar_chat(id_comment, user_id, id_lista){
   var msg =  document.getElementById(id_comment).value;
 
-  $.post({
-    url: "agregar_chat.php",
-    data: {msg : msg, id_lista : id_lista, user_id: user_id},
-  }).done(function(){
-    console.log("agregado");
+  if( msg.length >= 2){
+    $.post({
+      url: "agregar_chat.php",
+      data: {msg : msg, id_lista : id_lista, user_id: user_id},
+    }).done(function(){
+      console.log("agregado");
 
-  
-  });
-  $("#chat2").load("play.php?nombre=<?php echo $nombre?> #chat2");
+    });
+    $("#chat2").load("play.php?nombre=<?php echo $nombre?> #chat2");
+  }
 
 }
 
