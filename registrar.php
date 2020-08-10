@@ -13,6 +13,9 @@
   $sql = "SELECT * FROM universities";
   $universities = $conn->query($sql); 
 
+  $sql = "SELECT cuerpo FROM template where accion like 'tos' LIMIT 1";
+  $tos = $conn->query($sql)->fetch_assoc();
+
 ?>
 <body>
   <div class="container">
@@ -59,7 +62,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Términos y condiciones</h5>
 				</div>
 				<div class="modal-body">
-					<span>Lorem ipsum dolor sit amet<span>
+					<?php echo $tos['cuerpo']; ?>
 				</div>
 			</div>
 		</div>
