@@ -1,4 +1,3 @@
-<hr/>
 <footer class="footer" style="position: fixed;width: 100%;bottom: 0; background-color: white">
 <center>
 <h6>

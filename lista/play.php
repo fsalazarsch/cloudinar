@@ -1,10 +1,11 @@
-<?php session_start(); ?>
-
+<?php  session_start(); ?>
+<?php include "../config/header.html" ?>
+<?php include "../config/navbar.php" ?>
 <body>
+
 <?php
-	include "../config/header.html";
+if (isset($_SESSION["user_id"])){
 	include '../config/conneccion.php';
-	include '../config/navbar.php';
 
 	$db = new Database();
 	$conn = $db->connect();
@@ -53,12 +54,7 @@
 		}
 	}
 	
-
-	
-
-	if (isset($_SESSION["user_id"])){
 ?>
-
 <br>
 <div class="container">
 <?php 

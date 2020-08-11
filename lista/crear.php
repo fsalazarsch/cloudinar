@@ -58,7 +58,7 @@ if (isset($_SESSION["user_id"])){
   }
 </script>
 
-
+<br>
 <div class="container">
 <h3>Crear Lista de Reproducción</h3>
 <kbd>Para agregar un video a la lista pulse sobre el nombre del video, para quitarlo pulse otra vez sobre el video</kbd><hr>

@@ -1,7 +1,7 @@
 
   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <!-- Brand -->
-  <a class="navbar-brand" href="index.php"><strong>EIAM 2020</strong></a>
+  <a class="navbar-brand" href="#"><strong>EIAM 2020</strong></a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -39,7 +39,6 @@
     </ul>
   </div>
 </nav>
-<hr/>
 <?php
 }
 else 

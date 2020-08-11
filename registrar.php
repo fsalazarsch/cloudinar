@@ -22,11 +22,16 @@
   <br>
 
   <form  method="POST" action="doregister.php">
+  <h3>Registrar</h3>
+  Escribe tu nombre
   <input type="text" name="nombre" class="form-control" required="true" placeholder="Escribe tu nombre" minlength="4"><br>
+  Escribe tu e-mail
   <input type="email" id="email" name="email" class="form-control" required="true" placeholder="Escribe tu e-mail" style=" text-transform: lowercase;"><br>
-  <input type="password" name="passwd" class="form-control" required="true" placeholder="Elige tu clave"><br>
-    <select class="form-control" id="profesion" name="profesion">
-      <option value="" selected> Elige una opción</option>
+  Escrive tu clave
+  <input type="password" name="passwd" class="form-control" required="true" placeholder="Escribe tu clave"><br>
+  Elige una profesión
+    <select class="form-control" id="profesion" name="profesion" required="">
+      <option value="" selected> Elige una profesión</option>
       <?php
       foreach ($profesiones as $item) {
       echo "<option value='".$item['profession_id']."'>".$item['profession']."</option>"; 
@@ -35,8 +40,9 @@
     </select><br>
 
   <div class="form-group" id="universidad" style="display: none">
+     Elige una universidad
     <select class="form-control"name="universidad">
-      <option value="" selected> Elige una opción</option>
+      <option value="" selected> Elige una universidad</option>
       <?php
       foreach ($universities as $item) {
       echo "<option value='".$item['university_id']."'>".$item['university']."</option>"; 
@@ -44,7 +50,7 @@
       ?>
     </select>
   </div>
-
+  Escribe nombre de empresa
   <input type="text" name="empresa" class="form-control" required="true" placeholder="Escribe nombre de empresa"><br>
    <div class="form-check">
 			  <label class="form-check-label">
@@ -67,6 +73,7 @@
 			</div>
 		</div>
 	</div>
+  <br><br><br><br>
 </body>
 
 <script type="text/javascript">

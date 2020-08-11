@@ -14,7 +14,7 @@ if (isset($_SESSION["user_id"])){
   $db = new Database();
   $conn = $db->connect();
 
-  $sql = "SELECT nombre, lista FROM lista";
+  $sql = "SELECT id, nombre, lista FROM lista";
   $result = $conn->query($sql);
 
   
@@ -27,7 +27,7 @@ if (isset($_SESSION["user_id"])){
 
 <?php
    echo "<table class='table table-striped'>";
-      echo "<thead><td>Lista</td><td>Videos</td></thead>";
+      echo "<thead><td>Lista</td><td>Videos</td><td>Acciones</td></thead>";
   if ($result->num_rows > 0) 
     while ($fila = $result->fetch_assoc()) {
       //print_r($fila);
@@ -47,6 +47,9 @@ if (isset($_SESSION["user_id"])){
         }
       }
       echo "</ol></td>";
+
+      echo "<td><a onclick='ocultar(".$fila['id'].")'><i class='fa fa-2x fa fa-eye-slash'></i></a></td>";
+
       echo "</tr>";
 
     }
@@ -54,6 +57,16 @@ if (isset($_SESSION["user_id"])){
 ?>
 </div>
 </body>
+<script type="text/javascript">
+  function ocultar(id){
+    $.post({
+      url: "ocultar.php",
+      data: "id="+id
+    });
+  alert("Programacion de evento eliminada");
+  }  
+</script>
+
 <br><br><br>
 <?php include "../config/footer.php" ?>
 <?php

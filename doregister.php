@@ -1,3 +1,4 @@
+<?php  require_once "../vendor/autoload.php"; ?>
 <?php
 	include './config/conneccion.php';
 
@@ -35,7 +36,7 @@
   	$sentencia->bind_param("sssiis",$_POST['email'],$_POST['passwd'],$_POST['nombre'],$_POST['profesion'],$_POST['universidad'],$_POST['empresa']);
   	$sentencia->execute();
 
-  	var_dump($_POST);
+  	//var_dump($_POST);
 
 	$sql = "SELECT * FROM users WHERE user_email LIKE '".$_POST['email']."' LIMIT 1";	
 	$result = $conn->query($sql);  
@@ -43,7 +44,7 @@
 
 	session_start();
 	$_SESSION = $row;
-	var_dump($row);
+	//var_dump($row);
 
   $sql = "SELECT * FROM template WHERE accion like 'email_de_bienvenida'";
   $result = $conn->query($sql);

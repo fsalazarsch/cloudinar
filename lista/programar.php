@@ -8,7 +8,7 @@
   $db = new Database();
   $conn = $db->connect();
 
-  $sql = "SELECT id, nombre FROM lista";
+  $sql = "SELECT id, nombre FROM lista order by nombre";
   $listas = $conn->query($sql); 
   ?>
 <body>
@@ -22,7 +22,7 @@ if (isset($_SESSION["user_id"])){
 	<br/>
 
 	<div class="container">
-		<h3> Porgramar lista</h3>
+		<h3> Programar lista</h3>
 		<form enctype="multipart/form-data"  method="POST" action="doprogramar.php">
 
 		<div class="form-group">
@@ -38,21 +38,17 @@ if (isset($_SESSION["user_id"])){
 
 			<div class="form-group">
 				<label for="file">Poster</label>
-				<input id="upload-img" type="file" name="file" class="form-control">
-			</div><br>
+				<input id="upload-img" type="file" name="file" class="form-control"required>
+			</div>
 
-		<div class="form-group row">
-		  <label for="example-datetime-local-input" class="col-2 col-form-label">Fecha y hora de estreno</label>
-		  <div class="col-10">
+		<div class="form-group">
+		  <label for="example-datetime-local-input">Fecha y hora de estreno</label>
 		    <input class="form-control" type="datetime-local" name="start_at" required>
-		  </div>
 		</div>
 
-		<div class="form-group row">
-		  <label for="example-datetime-local-input" class="col-2 col-form-label">Fecha y hora de cierre</label>
-		  <div class="col-10">
+		<div class="form-group">
+		  <label for="example-datetime-local-input">Fecha y hora de cierre</label>
 		    <input class="form-control" type="datetime-local" name="end_at">
-		  </div>
 		</div>
 
 	

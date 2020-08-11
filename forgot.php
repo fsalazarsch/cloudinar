@@ -15,7 +15,7 @@ function envio_mail_postmark($destinatario, $titulo, $mensaje){
 	$client = new PostmarkClient("e696de7c-a310-4090-86b8-b7a2788e8e3c");
 
 	$sendResult = $client->sendEmail(
-	  "info@infomagica.cl",
+	  "eiam@infomagica.cl",
 	  $destinatario,
 	  $titulo,
 	  $mensaje
@@ -38,6 +38,7 @@ function envio_mail_postmark($destinatario, $titulo, $mensaje){
 <div class="container">
 
 	<h3>Olvido de clave</h3>
+      E-mail usuario
 	<form  method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 		<input type="email" id="email" name="email" class="form-control" required="true" placeholder="Escribe tu e-mail" style=" text-transform: lowercase;"><br>
 		<button id="submitButton" type="submit"  name="submit" class="btn btn-primary">Reiniciar clave</button>
@@ -72,7 +73,7 @@ function envio_mail_postmark($destinatario, $titulo, $mensaje){
 
   envio_mail_postmark($_POST['email'], $row['asunto'], $cuerpo);
 
-  echo "Si tu email fue registrado entonces se ha envado un correo para reiniciar la clave";
+  echo "Si tu email fue registrado entonces se ha enviado un correo para reiniciar la clave";
 
 } ?>
 </div>
