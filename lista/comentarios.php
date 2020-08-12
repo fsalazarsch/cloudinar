@@ -4,16 +4,12 @@
 
 if (isset($_SESSION["user_id"])){
 
-  include "../config/header.html";
-//  include './config/conneccion.php';
 
 ?>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="../config/chat.css" rel="stylesheet">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="../resources/css/chat.css" rel="stylesheet">
+<script src="../resources/js/bootstrap.min.js"></script>
 
-<!------ Include the above in your HEAD tag ---------->
 
 
 <div class="container">
@@ -49,7 +45,7 @@ error_reporting(E_ALL);
       <div class="media" style="width: 100%">
         <div class="media-heading">
           </div>
-          <div class="panel-collapse collapse in">
+          <div class="panel-collapse">
             <div class="media-left">
               <div class="vote-wrap">
 
@@ -68,7 +64,7 @@ error_reporting(E_ALL);
               <div class="comment-meta">
 
               <span>
-                        <span class="label label-info" style="padding :.1em 0.6em 0.1em;font-size: 100%"><?php echo $row['votes']?></span>
+                        <span class="badge badge-info" style="padding :.1em 0.6em 0.1em;font-size: 100%"><?php echo $row['votes']?></span>
 
                         <a onclick="like(<?php echo $row['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, 1);"><i class="fa fa-2x fa-thumbs-up"></i></a>
                         <a onclick="like(<thumbs-up?php echo $row['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, -1);"><i class="fa fa-2x fa-thumbs-down"></i></a>
@@ -96,7 +92,7 @@ error_reporting(E_ALL);
         <div class="media-heading">
             
           </div>
-          <div class="panel-collapse collapse in">
+          <div class="panel-collapse">
             <div class="media-left">
               <div class="vote-wrap">
               </div>
@@ -113,7 +109,7 @@ error_reporting(E_ALL);
                             <div class="comment-meta">
 
               <span>
-                        <span class="label label-info" style="padding :.1em 0.6em 0.1em;font-size: 100%"><?php echo $row2['votes']?></span>
+                        <span class="badge badge-info" style="padding :.1em 0.6em 0.1em;font-size: 100%"><?php echo $row2['votes']?></span>
                         <a onclick="like(<?php echo $row2['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, 1);"><i class="fa fa-2x fa-thumbs-up"></i></a>
                         <a onclick="like(<?php echo $row2['comment_id']?>, <?php echo $_SESSION['user_id'] ?>, -1);"><i class="fa fa-2x fa-thumbs-down"></i></a>
                         

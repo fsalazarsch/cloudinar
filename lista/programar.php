@@ -1,6 +1,6 @@
 <?php  session_start(); ?>
-<?php include "../config/header.html" ?>
-<?php include "../config/navbar.php" ?>
+<?php include "../resources/header.html" ?>
+<?php include "../resources/navbar.php" ?>
 <?php include '../config/conneccion.php'; ?>
 
 <?php
@@ -59,7 +59,7 @@ if (isset($_SESSION["user_id"])){
 
 <br><br><br><br>
 </body>
-<?php include "../config/footer.php" ?>
+<?php include "../resources/footer.php" ?>
 
 <?php
 }

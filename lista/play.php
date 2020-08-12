@@ -1,6 +1,6 @@
 <?php  session_start(); ?>
-<?php include "../config/header.html" ?>
-<?php include "../config/navbar.php" ?>
+<?php include "../resources/header.html" ?>
+<?php include "../resources/navbar.php" ?>
 <body>
 
 <?php
@@ -62,7 +62,9 @@ if (isset($_SESSION["user_id"])){
 ?>
 <div class="container" style="position:	relative">
 
-	<button onmouseover="$(this).child().css('opacity' : '1.0')" onclick="$('video').css('visibility', 'visible');$('video').click();$(this).hide();" style="position: absolute;width: inherit;height: 100%;opacity: 1.0;border: none;"><i class="fa fa-5x fa-play-circle" style ="color:#357ebd;"></i></button>
+	<button  onclick='$("video").css("visibility", "visible");$("video").click();$(this).hide();' style="position: absolute;width: inherit;height: 100%;opacity: 1.0;border: none;">
+		<i class="fa fa-5x fa-play-circle" style ="color:#357ebd;"></i>
+	</button>
 	<video style="width: 100%; visibility: hidden;" crossorigin="anonymous"  controls="false">
 	</video>
 
@@ -161,18 +163,18 @@ if (isset($_SESSION["user_id"])){
   </ul>
 
   <div class="tab-content">
-    <div id="home" class="tab-pane fade in active"><br>
-    	<div id="comentarios"> <?php require('comentarios.php'); ?> </div>
+    <div id="home" class="tab-pane active"><br>
+    	<div id="comentarios" style="font-size: 14px"> <?php require('comentarios.php'); ?> </div>
     </div>
-    <div id="chat" class="tab-pane fade in ">
-      	<div id="chat2"> <?php require('chat.php'); ?> </div>
+    <div id="chat" class="tab-pane">
+      	<div id="chat2" style="font-size: 14px"> <?php require('chat.php'); ?> </div>
     </div>	
   </div>
 
 </body>
-<br><br><br>
+<br><br><br><br>
 
-<?php include "../config/footer.php" ?>
+<?php include "../resources/footer.php" ?>
 
 <?php
 	}

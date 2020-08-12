@@ -1,6 +1,6 @@
 <?php  session_start(); ?>
-<?php include "../config/header.html" ?>
-<?php include "../config/navbar.php" ?>
+<?php include "../resources/header.html" ?>
+<?php include "../resources/navbar.php" ?>
 <body>
 
 <?php
@@ -105,7 +105,8 @@ error_reporting(E_ALL);
 ?>
 </div>
 </div>
-
+<br>
+<br>
 
 <script type="text/javascript">
 function borrar(name, tipo) {
@@ -124,7 +125,7 @@ function borrar(name, tipo) {
 </script>
 </body>
 <br><br><br>
-<?php include "../config/footer.php" ?>
+<?php include "../resources/footer.php" ?>
 
 <?php
 }

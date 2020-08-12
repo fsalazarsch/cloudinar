@@ -1,5 +1,5 @@
-<?php include "./config/header.html" ?>
-<?php include "./config/navbar.php" ?>
+<?php include "./resources/header.html" ?>
+<?php include "./resources/navbar.php" ?>
 <?php include './config/conneccion.php'; ?>
 
 <?php
@@ -60,6 +60,7 @@
  
   <button id="submitButton" type="submit"  name="submit" class="btn btn-primary">Registrar</button>
     </form>
+    <br>
   </div>
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -100,4 +101,4 @@
 
 </script>
 
-<?php include "./config/footer.php" ?>
+<?php include "./resources/footer.php" ?>

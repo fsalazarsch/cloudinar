@@ -4,13 +4,10 @@
 
 if (isset($_SESSION["user_id"])){
 
-  include "../config/header.html";
+  //include "../config/header.html";
 
 ?>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="../config/chat.css" rel="stylesheet">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -24,18 +21,11 @@ if (isset($_SESSION["user_id"])){
   margin-left: 15px;
 }
 
-.darker {
-  border-color: #ccc;
-  background-color: #ddd;
-}
-
 .containerchat::after {
   content: "";
   clear: both;
   display: table;
 }
-
-
 
 .time-right {
   float: right;
@@ -89,7 +79,6 @@ echo '</div>';
 ?>
 </div>
 </div>
-
 
 
 <script type="text/javascript">

@@ -27,8 +27,8 @@ function envio_mail_postmark($destinatario, $titulo, $mensaje){
 
 
 
-<?php include "./config/header.html" ?>
-<?php include "./config/navbar.php" ?>
+<?php include "./resources/header.html" ?>
+<?php include "./resources/navbar.php" ?>
 <?php  require_once "../vendor/autoload.php"; ?>
 
 
@@ -79,4 +79,4 @@ function envio_mail_postmark($destinatario, $titulo, $mensaje){
 </div>
 
 </body>
-<?php include "./config/footer.php" ?>
+<?php include "./resources/footer.php" ?>

@@ -7,7 +7,7 @@
 <!--link rel="stylesheet" href="video.css"-->
 
 <?php
-	include "../config/header.html";
+	include "../resources/header.html";
 	include '../config/conneccion.php';
 
 	$db = new Database();

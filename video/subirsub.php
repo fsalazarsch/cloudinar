@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+include "../resources/header.html";
+include "../resources/navbar.php";
 
 if (isset($_SESSION["user_id"])){
 
@@ -9,7 +11,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
   require_once "../../vendor/autoload.php";
-
   include '../config/conneccion.php';
 
 if($_POST){
@@ -36,7 +37,8 @@ if($_POST){
   header('Location: /cloud/video/listar.php');
 
 }
-  include "../config/header.html";
+
+echo "<body>";
 
 
   echo '<div class="container">';
@@ -50,6 +52,8 @@ if($_POST){
     </form>
   </div>';
 
+echo "</body>";
+include "../resources/footer.php";
 
 }
 else
