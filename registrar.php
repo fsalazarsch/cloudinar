@@ -50,13 +50,16 @@
       ?>
     </select>
   </div>
-  Escribe nombre de empresa
-  <input type="text" name="empresa" class="form-control" required="true" placeholder="Escribe nombre de empresa"><br>
-   <div class="form-check">
-			  <label class="form-check-label">
-			    <input type="checkbox"  name="check" class="form-check-input" required>Estoy de acuerdo con los <a href="#"  data-toggle="modal" data-target="#exampleModal">Términos y condiciones</a>
-			  </label>
-	</div><br>
+    <div class="form-group" id="divempresa" style="display: none">
+    Escribe nombre de empresa
+    <input type="text" name="empresa" class="form-control" required="true" placeholder="Escribe nombre de empresa"><br>
+     <div class="form-check">
+  			  <label class="form-check-label">
+  			    <input type="checkbox"  name="check" class="form-check-input" required>Estoy de acuerdo con los <a href="#"  data-toggle="modal" data-target="#exampleModal">Términos y condiciones</a>
+  			  </label>
+  	</div>
+  </div>
+  <br>
  
   <button id="submitButton" type="submit"  name="submit" class="btn btn-primary">Registrar</button>
     </form>
@@ -79,10 +82,15 @@
 
 <script type="text/javascript">
 	$("#profesion").change(function(){
-		if($("#profesion").val() == 4)
+		if($("#profesion").val() == 4){
 			$("#universidad").show();
-		else
+      $("#divempresa").hide();
+    }
+      
+    else{
 			$("#universidad").hide();
+      $("#divempresa").show();
+    }
 
 	});
 

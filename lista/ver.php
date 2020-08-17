@@ -14,7 +14,7 @@ if (isset($_SESSION["user_id"])){
   $db = new Database();
   $conn = $db->connect();
 
-  $sql = "SELECT id, nombre, lista FROM lista";
+  $sql = "SELECT id, nombre, lista, start_at FROM lista";
   $result = $conn->query($sql);
 
   
@@ -48,7 +48,10 @@ if (isset($_SESSION["user_id"])){
       }
       echo "</ol></td>";
 
-      echo "<td><a onclick='ocultar(".$fila['id'].")'><i class='fa fa-2x fa fa-eye-slash'></i></a></td>";
+      if ( $fila['start_at'] )
+        echo "<td><a onclick='ocultar(".$fila['id'].")' style='cursor: pointer;'><i class='fa fa-2x fa fa-eye-slash'></i></a></td>";
+      else
+        echo "<td></td>";
 
       echo "</tr>";
 
@@ -64,6 +67,7 @@ if (isset($_SESSION["user_id"])){
       data: "id="+id
     });
   alert("Programacion de evento eliminada");
+  location.reload();
   }  
 </script>
 

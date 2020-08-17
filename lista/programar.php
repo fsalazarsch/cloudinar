@@ -26,8 +26,9 @@ if (isset($_SESSION["user_id"])){
 		<form enctype="multipart/form-data"  method="POST" action="doprogramar.php">
 
 		<div class="form-group">
+		<label for="file">Elige una lista</label>
     	<select class="form-control" name="lista" required>
-      		<option value="" selected> Elige una opción</option>
+      		<option value="" selected> Elige una lista</option>
       		<?php
       			foreach ($listas as $item) {
       			echo "<option value='".$item['id']."'>".$item['nombre']."</option>"; 

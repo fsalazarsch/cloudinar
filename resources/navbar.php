@@ -28,7 +28,7 @@
         <a class="nav-link" href="user_dash.php">Mi perfil</a>
       </li-->
       <li class="nav-item">
-        <a class="nav-link" href="/cloud/quienes.php">Quienes somos</a>
+        <a class="nav-link" href="/cloud/quienes.php">Quiénes somos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/cloud/contact.php">Contacto</a>
@@ -53,7 +53,7 @@ else
         <a class="nav-link" href="registrar.php">Registrarse</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="quienes.php">Quienes somos</a>
+        <a class="nav-link" href="quienes.php">Quiénes somos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contacto</a>

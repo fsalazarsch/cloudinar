@@ -43,7 +43,7 @@ echo "<h3>Eventos activos</h3>";
     
     echo "<br>";
     echo "<a href='lista/play.php?nombre=".$item['nombre']."'>".$item['nombre']." - ". $item['user_name']."<br>";
-    echo '<img src="posters/'.$item['id'].'.jpg" class="img-fluid" alt=""/><br></a>';
+    echo '<img src="posters/'.$item['id'].'.jpg" onerror="this.onerror=null;this.src=\'posters/'.$item['id'].'.png\';" class="img-fluid" alt=""/><br></a>';
   }
   else
         echo "<i>No hay eventos activos por el momento</i>";
@@ -56,7 +56,7 @@ echo "<h3>Eventos futuros</h3>";
     foreach ($eventos_futuros as $item) { 
       echo "<br>";
       echo $item['nombre']." - ". $item['user_name']."<br>";
-      echo '<img src="posters/'.$item['id'].'.jpg" class="img-fluid" alt=""/><br>';
+      echo '<img src="posters/'.$item['id'].'.jpg" onerror="this.onerror=null;this.src=\'posters/'.$item['id'].'.png\';" class="img-fluid" alt=""/><br></a>';
     }
   else
     echo "<i>No hay eventos futuros por el momento</i>";

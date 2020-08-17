@@ -15,12 +15,13 @@ if (isset($_SESSION["user_id"])){
 		<h3> Subir Video</h3>
 		<form enctype="multipart/form-data"  method="POST" action="upload.php">
 			<div class="form-group">
-				<label for="file">Archivo</label>
+				<label for="file">Video</label>
 				<input id="upload-img" type="file" name="file" class="form-control">
 			</div><br>
 
 			<div class="form-group">
-				<input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendra el archivo" class="form-control" required="true"><br>
+				<label for="file">Escriba el nombre que tendra el video</label>
+				<input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendra el video" class="form-control" required="true"><br>
 			</div>
 
 			 <div class="form-check">

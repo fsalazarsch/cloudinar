@@ -56,13 +56,13 @@ if (isset($_SESSION["user_id"])){
 	
 ?>
 <br>
-<div class="container">
+<div class="">
 <?php 
 	echo "<h3><center>".$nombre." - ".$nombre_propietario." - ".$vistas." visitas</center></h3>"; 
 ?>
-<div class="container" style="position:	relative">
+<div class="" style="position:	relative">
 
-	<button  onclick='$("video").css("visibility", "visible");$("video").click();$(this).hide();' style="position: absolute;width: inherit;height: 100%;opacity: 1.0;border: none;">
+	<button  onclick='$("video").css("visibility", "visible");$("video").click();$(this).hide();' style="position: absolute;width: 100%;height: 100%;opacity: 1.0;border: none;">
 		<i class="fa fa-5x fa-play-circle" style ="color:#357ebd;"></i>
 	</button>
 	<video style="width: 100%; visibility: hidden;" crossorigin="anonymous"  controls="false">
@@ -148,7 +148,7 @@ if (isset($_SESSION["user_id"])){
     var image = document.getElementById("img");
 
     function updateChat() {
-        $("#chatreload").load("play.php?nombre=<?php echo $nombre?> #chatreload");
+        $("#chatreload").load("play.php?nombre=<?php echo rawurlencode($nombre)?> #chatreload");
         console.log("update");
     }
 

@@ -95,7 +95,7 @@ function agregar_chat(id_comment, user_id, id_lista){
       console.log("agregado");
 
     });
-    $("#chat2").load("play.php?nombre=<?php echo $nombre?> #chat2");
+    $("#chat2").load("play.php?nombre=<?php echo rawurlencode($nombre)?> #chat2");
   }
 
 }

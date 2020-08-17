@@ -20,7 +20,7 @@
 <body>
 <div class="container">
 	<br>
-	<h3>Quienes somos</h3>
+	<h3>Quiénes somos</h3>
 	<?php echo $quienes_somos['cuerpo']; ?>
 </div>
 </body>

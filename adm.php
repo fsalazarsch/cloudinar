@@ -4,7 +4,7 @@
 <body>
   <br/>
 <div class="container">
-	<h3>Que desea hacer, <?php echo $_SESSION['user_name']; ?></h3>
+	<h3>¿Qué desea hacer, <?php echo $_SESSION['user_name']; ?>?</h3>
 	<ol>
 		<li><a href="video/subir.php">Subir un video</a></li>
 		<li><a href="video/listar.php">Ver lista de videos Subidos</a></li>

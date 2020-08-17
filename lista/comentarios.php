@@ -162,7 +162,7 @@ function like(comment_id, user_id, x){
   });
 
   console.log(comment_id, user_id, x);
-  $("#comentarios").load("play.php?nombre=<?php echo $nombre?> #comentarios");
+  $("#comentarios").load("play.php?nombre=<?php echo rawurlencode ($nombre)?> #comentarios");
 }
 
 
@@ -177,7 +177,7 @@ function agregar_comentario(id_comment, user_id, id_lista, id_padre){
 
   
   });
-  $("#comentarios").load("play.php?nombre=<?php echo $nombre?> #comentarios");
+  $("#comentarios").load("play.php?nombre=<?php echo rawurlencode ($nombre)?> #comentarios");
   }
 }
 
