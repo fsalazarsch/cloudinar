@@ -28,6 +28,16 @@ error_reporting(E_ALL);
 
   $db = new Database();
   $conn = $db->connect();
+
+  $colores = $conn->query("SELECT * FROM color");
+  $color =[];
+
+      while($row = $colores->fetch_assoc())
+    {
+        array_push($color, $row["color"]);
+    }
+    //$color = $colores[$indice];
+
   $res = $conn->query("SELECT comment_id FROM comments WHERE Lista_id = ".$id_lista);
     $nRows = $res->num_rows;
 
@@ -38,12 +48,21 @@ error_reporting(E_ALL);
 
     while($row = $result->fetch_assoc()){
 
+
+    $ord =  ord($row["user_name"][0]);
+    $indice =  $ord%$colores->num_rows;
 ?>
 
     <div class="row">
 
       <div class="media" style="width: 100%">
-        <div class="media-heading">
+        <?php if( $row["user_id"] != $propietario) { ?>
+        <div class="media-heading" style="background-color: <?php echo $color[$indice]; ?>">
+        <?php } else{ ?>
+        <div class="media-heading" style="background-color: darkgreen">
+        <?php }?>
+
+          <?php echo $row["user_name"][0]; ?>
           </div>
           <div class="panel-collapse">
             <div class="media-left">
@@ -51,12 +70,12 @@ error_reporting(E_ALL);
 
               </div>
             </div>
-            <div class="media-body">
+            <div class="media-body" style="padding-left: 15px;">
               <p> 
                  <?php if( $row["user_id"] != $propietario) { ?>
-                    <b style="color: blue">
+                    <b style="color: blue; font-weight: bold;">
                  <?php } else{ ?>
-                    <b style="color: darkgreen">
+                    <b style="color: darkgreen; font-weight: bold;">
                  
                  <?php }?>
                   
@@ -100,9 +119,9 @@ error_reporting(E_ALL);
             <div class="media-body">
               <p> 
               <?php if( $row["user_id"] != $propietario) { ?>
-                <b style="color: blue">
+                <b style="color: blue; font-weight: bold;">
               <?php } else{ ?>
-                <b style="color: darkgreen">
+                <b style="color: darkgreen; font-weight: bold;">
                 <?php }?>
 
                   <?php echo $row2['user_name']?></b> (<?php echo date('d/m/Y', strtotime($row2['fecha_hora']));?>)<br> <?php echo $row2['descripcion']?></p>

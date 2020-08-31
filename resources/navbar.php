@@ -1,7 +1,7 @@
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: black;">
   <!-- Brand -->
-  <a class="navbar-brand" href="#"><b>EIAM 2020</b></a>
+  <a class="navbar-brand" href="#"><b><img src="/cloud/resources/eiam blanco transparente.png"></b></a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -16,25 +16,25 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/cloud/main.php">Principal</a>
+        <a class="nav-link" href="https://eiam.site/cloud/center.php">Principal</a>
       </li>
 
       <?php if($_SESSION['user_type'] == 3){ ?>
       <li class="nav-item">
-        <a class="nav-link" href="/cloud/index2.php">Administración</a>
+        <a class="nav-link" href="https://eiam.site/cloud/index2.php">Administración</a>
       </li>
       <?php } ?>
       <!--li class="nav-item">
         <a class="nav-link" href="user_dash.php">Mi perfil</a>
       </li-->
       <li class="nav-item">
-        <a class="nav-link" href="/cloud/quienes.php">Quiénes somos</a>
+        <a class="nav-link" href="https://eiam.site/cloud/quienes.php">Quiénes somos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/cloud/contact.php">Contacto</a>
+        <a class="nav-link" href="https://eiam.site/cloud/contact.php">Contacto</a>
       </li>
       <li class="nav-item">
-        <a class="navbar-brand" href="/cloud/logout.php"><i class="fa fa-sign-out"></i>Salir</a>
+        <a class="nav-link" href="https://eiam.site/cloud/logout.php">Salir</a>
       </li>
     </ul>
   </div>

@@ -1,6 +1,13 @@
 <?php  session_start(); ?>
 <?php include "../resources/header.html" ?>
 <?php include "../resources/navbar.php" ?>
+
+<?php
+  include '../config/conneccion.php';
+
+  $db = new Database();
+  $conn = $db->connect();
+?>
 <body>
 
 <?php
@@ -12,35 +19,32 @@ if (isset($_SESSION["user_id"])){
 	<br/>
 
 	<div class="container">
-		<h3> Subir Video</h3>
+		<h2> <center>Subir Video</center></h2>
 		<form enctype="multipart/form-data"  method="POST" action="upload.php">
-			<div class="form-group">
-				<label for="file">Video</label>
-				<input id="upload-img" type="file" name="file" class="form-control">
-			</div><br>
-
-			<div class="form-group">
-				<label for="file">Escriba el nombre que tendra el video</label>
-				<input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendra el video" class="form-control" required="true"><br>
+			Video
+			<div class="md-form">
+				<input id="upload-img" type="file" name="file" class="form-control" style="color: white">
 			</div>
+				Escriba el nombre que tendra el video
+				<div class="md-form">
+				<input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendra el video" class="form-control" required="true" style="color: white"></div>
 
 			 <div class="form-check">
 			  <label class="form-check-label">
 			    <input type="checkbox"  name="check" class="form-check-input" value="1">Video en Inglés
 			  </label>
 			</div>
- 
-			<div class="form-group">
-				<label>Seleccione el tipo de Video</label><br>
-				<select name="tipo" class="form-control">
-					<option value="moda">Moda</option>
-					<option value="contenido">Contenido</option>
-					<option value="material">Material</option>
+			Seleccione el tipo de Video
+			<div class="md-form">
+				<select name="tipo" class="form-control" style="color: white">
+					<option style="color: black" value="moda">Moda</option>
+					<option style="color: black" value="contenido">Contenido</option>
+					<option style="color: black" value="material">Material</option>
 				</select>
 			</div><br>
 			<kbd>NOTA: Luego de subir el video se irá automáticamente a la lista de subidos</kbd><hr>
 	
-			<button id="submitButton" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Subir video</button>
+			<button id="submitButton" type="submit" class="btn btn-primary boton" data-toggle="modal" data-target="#exampleModal">Subir video</button>
 		</form>
 	</div>
 

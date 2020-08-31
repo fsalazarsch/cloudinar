@@ -1,6 +1,7 @@
 <?php include "./resources/header.html" ?>
 <?php include "./resources/navbar.php" ?>
 <?php include './config/conneccion.php'; ?>
+<link rel="stylesheet" href="/cloud/resources/css/main.css" crossorigin="anonymous">
 
 <?php
 
@@ -22,51 +23,58 @@
   <br>
 
   <form  method="POST" action="doregister.php">
-  <h3>Registrar</h3>
+  <h2><center>Registrarse</center></h2>
+  <div class="md-form">
   Escribe tu nombre
-  <input type="text" name="nombre" class="form-control" required="true" placeholder="Escribe tu nombre" minlength="4"><br>
+  <input type="text" name="nombre" class="form-control" required="true" placeholder="Escribe tu nombre" minlength="4" style="color: white">
+  </div>
+  <div class="md-form">
   Escribe tu e-mail
-  <input type="email" id="email" name="email" class="form-control" required="true" placeholder="Escribe tu e-mail" style=" text-transform: lowercase;"><br>
-  Escrive tu clave
-  <input type="password" name="passwd" class="form-control" required="true" placeholder="Escribe tu clave"><br>
+  <input type="email" id="email" name="email" class="form-control" required="true" placeholder="Escribe tu e-mail" style=" text-transform: lowercase;color: white">
+  </div>
+  <div class="md-form">
+  Escrive tu contraseña
+  <input type="password" name="passwd" class="form-control" required="true" placeholder="Escribe tu contraseña" style="color: white">
+  </div>
+  <div class="md-form">
   Elige una profesión
-    <select class="form-control" id="profesion" name="profesion" required="">
-      <option value="" selected> Elige una profesión</option>
+    <select class="form-control" id="profesion" name="profesion" required="" style="color: white">
+      <option value="" selected style="color: black"> Elige una profesión</option>
       <?php
       foreach ($profesiones as $item) {
-      echo "<option value='".$item['profession_id']."'>".$item['profession']."</option>"; 
-      }
-      ?>
-    </select><br>
-
-  <div class="form-group" id="universidad" style="display: none">
-     Elige una universidad
-    <select class="form-control"name="universidad">
-      <option value="" selected> Elige una universidad</option>
-      <?php
-      foreach ($universities as $item) {
-      echo "<option value='".$item['university_id']."'>".$item['university']."</option>"; 
+      echo "<option value='".$item['profession_id']."' style='color:black'>".$item['profession']."</option>"; 
       }
       ?>
     </select>
   </div>
-    <div class="form-group" id="divempresa" style="display: none">
+  <div class="form-group md-form" id="universidad" style="display: none">
+     Elige una universidad
+    <select class="form-control"name="universidad" style="color: white">
+      <option value="" selected style="color: black"> Elige una universidad</option>
+      <?php
+      foreach ($universities as $item) {
+      echo "<option value='".$item['university_id']."' style='color:black'>".$item['university']."</option>"; 
+      }
+      ?>
+    </select>
+  </div>
+    <div class="form-group md-form" id="divempresa" style="display: none">
     Escribe nombre de empresa
-    <input type="text" name="empresa" class="form-control" required="true" placeholder="Escribe nombre de empresa"><br>
+    <input type="text" name="empresa" class="form-control" required="true" placeholder="Escribe nombre de empresa" style="color: white"><br>
+    </div>
      <div class="form-check">
   			  <label class="form-check-label">
   			    <input type="checkbox"  name="check" class="form-check-input" required>Estoy de acuerdo con los <a href="#"  data-toggle="modal" data-target="#exampleModal">Términos y condiciones</a>
   			  </label>
   	</div>
-  </div>
   <br>
  
-  <button id="submitButton" type="submit"  name="submit" class="btn btn-primary">Registrar</button>
+  <button id="submitButton" type="submit"  name="submit" class="btn btn-primary boton">Registrarse</button>
     </form>
     <br>
   </div>
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document" style="color: black">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Términos y condiciones</h5>

@@ -24,11 +24,11 @@
 <br>
 
 <div class="container">
-  <h3>Editar template</h3>
+  <h2><center>Editar template</center></h2>
   <form  method="POST" action="doedittemplate.php">
   <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
   <textarea name="cuerpo" style="width: 100%;resize: none;" placeholder=" Escribe aqui el cuerpo de tu mensaje" required> <?php echo $row['cuerpo']; ?></textarea><br>
-  <button id="submitButton" type="submit"  name="submit" class="btn btn-primary">Editar</button>
+  <button id="submitButton" type="submit"  name="submit" class="btn btn-primary boton">Editar</button>
     </form>
   </div>
 

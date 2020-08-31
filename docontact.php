@@ -21,7 +21,7 @@
 	$sql = "INSERT INTO contact(email, asunto, cuerpo) values(?, ?, ?)";
 
 	$sentencia = $conn->prepare($sql);
-  	$sentencia->bind_param("sss",$_POST['email'],$_POST['asunto'],$_POST['cuerpo']);
+  	$sentencia->bind_param("sss",strtolower($_POST['email']),$_POST['asunto'],$_POST['cuerpo']);
   	$sentencia->execute();
 
   	echo "Su mensaje ha sido enviado correctamente";

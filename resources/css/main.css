@@ -1,0 +1,21 @@
+body {
+	background-image: url(https://eiam.site/cloud/resources/house.jpg); 
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	font-family: Calibri;
+	font-size: larger;
+	color: white;
+}
+
+.boton {
+    background-color: transparent !important;
+    border-style: solid !important;
+    border: 1px;
+    font-size: medium;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white !important;
+  opacity: 1; /* Firefox */
+}

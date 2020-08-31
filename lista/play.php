@@ -1,7 +1,7 @@
 <?php  session_start(); ?>
 <?php include "../resources/header.html" ?>
 <?php include "../resources/navbar.php" ?>
-<body>
+<body style="background-color: #222222 !important;background-image: none;">
 
 <?php
 if (isset($_SESSION["user_id"])){
@@ -15,10 +15,10 @@ if (isset($_SESSION["user_id"])){
 	$subs  = "";
 	$tipos  = "";
 
-	$sql = "UPDATE lista set vistas = vistas + 1 WHERE nombre like ?";
-	$sentencia = $conn->prepare($sql);
-  	$sentencia->bind_param("s", $nombre );
-  	$sentencia->execute();
+	//$sql = "UPDATE lista set vistas = vistas + 1 WHERE nombre like ?";
+	//$sentencia = $conn->prepare($sql);
+  	//$sentencia->bind_param("s", $nombre );
+  	//$sentencia->execute();
 
 	$sql = "SELECT id, lista, A.user_id, B.user_name, vistas FROM lista A, users B WHERE A.user_id = B.user_id AND nombre like '".$nombre."' LIMIT 1";
 	$result = $conn->query($sql);  
@@ -58,11 +58,12 @@ if (isset($_SESSION["user_id"])){
 <br>
 <div class="">
 <?php 
-	echo "<h3><center>".$nombre." - ".$nombre_propietario." - ".$vistas." visitas</center></h3>"; 
+	echo "<h2><center>".$nombre_propietario." - ".$nombre." - ".$vistas." visitas</center></h2>"; 
 ?>
 <div class="" style="position:	relative">
 
-	<button  onclick='$("video").css("visibility", "visible");$("video").click();$(this).hide();' style="position: absolute;width: 100%;height: 100%;opacity: 1.0;border: none;">
+	<button onclick='$("video").css("visibility", "visible");$("video").click();$(this).hide();' style="position: absolute;width: 100%;height: 100%;opacity: 1.0;border: none;background-image: url(/cloud/posters/<?php echo $id_lista; ?>.jpg); background-size: cover;background-repeat:no-repeat;
+    background-position: center center;">
 		<i class="fa fa-5x fa-play-circle" style ="color:#357ebd;"></i>
 	</button>
 	<video style="width: 100%; visibility: hidden;" crossorigin="anonymous"  controls="false">
@@ -152,7 +153,7 @@ if (isset($_SESSION["user_id"])){
         console.log("update");
     }
 
-    setInterval(updateChat, 5000);
+    //setInterval(updateChat, 5000);
 
 
 </script>

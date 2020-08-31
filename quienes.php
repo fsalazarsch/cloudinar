@@ -1,6 +1,7 @@
 <?php  session_start(); ?>
 <?php include "./resources/header.html" ?>
 <?php include "./resources/navbar.php" ?>
+<link rel="stylesheet" href="/cloud/resources/css/main.css" crossorigin="anonymous">
 
 <?php
   include './config/conneccion.php';  
@@ -20,7 +21,7 @@
 <body>
 <div class="container">
 	<br>
-	<h3>Quiénes somos</h3>
+	<h2><center>Quiénes somos</center></h2>
 	<?php echo $quienes_somos['cuerpo']; ?>
 </div>
 </body>

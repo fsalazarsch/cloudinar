@@ -30,18 +30,19 @@ function envio_mail_postmark($destinatario, $titulo, $mensaje){
 <?php include "./resources/header.html" ?>
 <?php include "./resources/navbar.php" ?>
 <?php  require_once "../vendor/autoload.php"; ?>
+<link rel="stylesheet" href="/cloud/resources/css/main.css" crossorigin="anonymous">
 
 
 <body>
 
 <br>
 <div class="container">
-
-	<h3>Olvido de clave</h3>
+  <div class="md-form">
+	<h2><center>Olvido de contraseña</center></h2>
       E-mail usuario
 	<form  method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-		<input type="email" id="email" name="email" class="form-control" required="true" placeholder="Escribe tu e-mail" style=" text-transform: lowercase;"><br>
-		<button id="submitButton" type="submit"  name="submit" class="btn btn-primary">Reiniciar clave</button>
+		<input type="email" id="email" name="email" class="form-control" required="true" placeholder="Escribe tu e-mail" style=" text-transform: lowercase;color: white"><br>
+		<button id="submitButton" type="submit"  name="submit" class="btn btn-primary boton">Reiniciar contraseña</button>
     </form>
 
 <?php if ($_POST) {
@@ -76,6 +77,7 @@ function envio_mail_postmark($destinatario, $titulo, $mensaje){
   echo "Si tu email fue registrado entonces se ha enviado un correo para reiniciar la clave";
 
 } ?>
+</div>
 </div>
 
 </body>

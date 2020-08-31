@@ -6,9 +6,9 @@ include "../resources/navbar.php";
 
 if (isset($_SESSION["user_id"])){
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
   require_once "../../vendor/autoload.php";
   include '../config/conneccion.php';
@@ -43,9 +43,9 @@ echo "<body>";
 
   echo '<div class="container">';
   echo '<form enctype="multipart/form-data"  method="POST" action="subirsub.php?">';
-  echo '<div class="form-group">';
-  echo '<label for="file">Archivo</label>';
-  echo '<input id="upload-img" type="file" name="file" class="form-control">';
+  echo '<div class="md-form">';
+  echo 'Archivo';
+  echo '<input id="upload-img" type="file" name="file" class="form-control"  style="color: white">';
   echo '</div>';
   echo '<input id="nombre" type="hidden" name="nombre" value="'.$_GET['nombre'].'" class="form-control" required="true">';
   echo '<button id="submitButton" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Subir video</button>

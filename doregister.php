@@ -18,7 +18,7 @@
 		$client = new PostmarkClient("e696de7c-a310-4090-86b8-b7a2788e8e3c");
 
 		$sendResult = $client->sendEmail(
-		  "info@infomagica.cl",
+		  "eiam@infomagica.cl",
 		  $destinatario,
 		  $titulo,
 		  $mensaje

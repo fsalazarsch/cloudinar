@@ -14,9 +14,9 @@
 	$conn = $db->connect();
 
 	if ($_POST){
-		$consulta = "INSERT INTO lista (nombre, lista, user_id) VALUES (?,?,?)";
+		$consulta = "INSERT INTO lista (nombre, lista, list_type, user_id) VALUES (?,?,?,?)";
 		$sentencia = $conn->prepare($consulta);
-		$sentencia->bind_param("sss",$_POST['nombre'],$_POST['detlista'], $_POST['user_id']);
+		$sentencia->bind_param("ssis",$_POST['nombre'],$_POST['detlista'], $_POST['list_type'], $_POST['user_id']);
 		$sentencia->execute();
 		
 		

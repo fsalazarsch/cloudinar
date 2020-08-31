@@ -37,7 +37,7 @@ error_reporting(E_ALL);
 ?>
   <br/>
   <div class="container">
-  <h3>Ver Lista de Videos</h3>
+  <h2><center>Ver Lista de Videos</center></h2>
 
   <kbd>Para ver un video pulse sobre el nombre del video</kbd><hr>
 

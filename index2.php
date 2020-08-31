@@ -1,8 +1,10 @@
 <?php  session_start(); ?>
 <?php include "./resources/header.html" ?>
 <?php include "./resources/navbar.php" ?>
-<body>
+<link rel="stylesheet" href="/cloud/resources/css/main.css" crossorigin="anonymous">
 
+<body>
+<div style="padding-top: 5%"><br></div>
 <?php
 
 if($_POST){
@@ -31,7 +33,7 @@ if (isset($_SESSION["user_id"])){
   }
 
   if ($_SESSION["user_type"] != 3){
-    header('Location: /cloud/main.php');
+    header('Location: /cloud/center.php');
 
   }
 
@@ -41,15 +43,23 @@ if (isset($_SESSION["user_id"])){
 else{
 
 ?>
-<div class="container"><br>
-  <h3>Login</h3>
+<div class="container text-white" style="width:40%;background: linear-gradient(40deg,#4B534A,#303f9f) !important;"><br>
+  <h2><center>Ingresar</center></h2>
   <form  method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-  	E-mail usuario
-  <input id="nombre" type="email" name="nombre" class="form-control" placeholder="Escribe tu e-mail" style=" text-transform: lowercase;" required="true"><br>
-  	Password
-  <input id="nombre" type="password" name="passwd" class="form-control" required="true"><br>
-  <button id="submitButton" type="submit"  name="submit" class="btn btn-primary">Login</button>
-  <a href="./forgot.php"   class="btn btn-primary">Olvide mi Clave</a>
+  	<br>
+        <label>E-mail</label>
+    <div class="md-form" >
+    <i class="fa fa-user prefix"></i>
+    <input id="nombre" type="email" name="nombre" class="form-control" size="25" style=" text-transform: lowercase; color: white" required="true">
+    </div>
+  	<label>Contraseña</label>
+    <div class="md-form" >
+    <i class="fa fa-lock prefix"></i>
+    <input id="nombre" type="password" name="passwd" class="form-control" size="25" required="true" style=" color: white">
+    </div>
+    
+  <button id="submitButton" type="submit"  name="submit" class="btn btn-primary" style="background-color: transparent !important;border-style: solid !important;border: 1px;">Ingresar</button><br>
+  <a href="./forgot.php"   class="btn"  style="background-color: transparent !important; color: white; box-shadow: none;">Olvidé mi Contraseña</a>
     </form>
 </div>
 <?php

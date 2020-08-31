@@ -14,7 +14,6 @@ if (isset($_SESSION["user_id"])){
 .containerchat {
   width: 100%;
   border: 2px solid #dedede;
-  background-color: #f1f1f1;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
@@ -60,17 +59,30 @@ error_reporting(E_ALL);
   echo '<div id="chatreload">';
   echo '<p>'.$result->num_rows.' Mensajes de Chats</p>';
 
+
   while($row = $result->fetch_assoc()){
+
+    $ord =  ord($row["user_name"][0]);
+    $indice =  $ord%$colores->num_rows;
+
+      echo '<div class="row">';
+
     if($propietario != $row["user_id"]){
-      echo '<div class="row"><div class="containerchat">';
-      echo '<span><b style="color: blue">'.$row["user_name"].'</b> ('.date('d/m/Y H:i',strtotime($row["fecha_hora"])).') </span><br>';
-      echo '<span>'.$row["msg"].'</span>';
+      echo '<div class="containerchat" style="display: -webkit-box;">';
+
+      echo '<div class="media-heading" style="background-color:'.$color[$indice].';">'.$row["user_name"][0].'</div>';
+
+      echo '<span style="padding-left : 15px"><b style="color: blue">'.$row["user_name"].'</b> ('.date('d/m/Y H:i',strtotime($row["fecha_hora"])).') </span><br>';
+      echo '<span style="padding-left : 15px">'.$row["msg"].'</span>';
       echo '</div></div>';
     }
     else{
-      echo '<div class="row"><div class="containerchat">';
-      echo '<span><b style="color: darkgreen">'.$row["user_name"].':</b> ('.date('d/m/Y H:i',strtotime($row["fecha_hora"])).')</span><br>';
-      echo '<span>'.$row["msg"].'</span>';
+      echo '<div class="containerchat" style="display: -webkit-box">';
+      echo '<div class="media-heading" style="background-color: darkgreen;">'.$row["user_name"][0].'</div>';
+
+      //echo '<div class="media-heading" style="background-color:'.$color[$indice].';">#</div>';
+      echo '<span style="padding-left : 15px"><b style="color: darkgreen">'.$row["user_name"].':</b> ('.date('d/m/Y H:i',strtotime($row["fecha_hora"])).')</span><br>';
+      echo '<span style="padding-left : 15px">'.$row["msg"].'</span>';
       echo '</div></div>';      
     }
   }

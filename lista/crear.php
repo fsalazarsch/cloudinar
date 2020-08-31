@@ -59,7 +59,7 @@ if (isset($_SESSION["user_id"])){
 
 <br>
 <div class="container">
-<h3>Crear Lista de Reproducción</h3>
+<h2><center>Crear Lista de Reproducción</center></h2>
 <kbd>Para agregar un video a la lista pulse sobre el nombre del video, para quitarlo pulse otra vez sobre el video</kbd><hr>
 
 
@@ -74,7 +74,7 @@ if (isset($_SESSION["user_id"])){
     if (strpos($value["public_id"], 'moda') !== false) {
 
        $nombre = str_replace("moda/", "", $value["public_id"]);
-         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a>";
+         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action' style='color: black'>".$nombre."</a>";
              }
   }
 
@@ -84,7 +84,7 @@ if (isset($_SESSION["user_id"])){
   foreach ($results["resources"] as $value) {
    if (strpos($value["public_id"], 'contenido') !== false) {
        $nombre = str_replace("contenido/", "", $value["public_id"]);
-         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a>";
+         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action' style='color: black'>".$nombre."</a>";
     }
   }
 
@@ -94,7 +94,7 @@ if (isset($_SESSION["user_id"])){
    if (strpos($value["public_id"], 'material') !== false) {
         $nombre = str_replace("material/", "", $value["public_id"]);
 
-         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action'>".$nombre."</a>";
+         echo "<a onclick=\"agregar('".$nombre."', '".$value["secure_url"]."')\" class='list-group-item list-group-item-action' style='color: black'>".$nombre."</a>";
        }
   }
 
@@ -103,12 +103,34 @@ if (isset($_SESSION["user_id"])){
     <hr>
     <form enctype="multipart/form-data"  method="POST" action="subir_lista.php">
       <div class="container form-group">
-        <input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendrá la lista"  class="form-control" required="true"><br>
+        <div class="md-form">
+        <input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre que tendrá la lista"  class="form-control" required="true" style="color: white"></div>
         <input id="lista" type="hidden" name="lista" class="form-control">
         <input id="detlista" type="hidden" name="detlista" class="form-control">
-        <select class="custom-select" id="user_id" name="user_id" required="true">
+
+        <label> Tipo de Lista</label>
+        <div class="md-form">
+        <select class="form-control" id="list_type" name="list_type" required="true"  style="color: white">
     
-        <option value="" selected>Elige...</option>
+        <option value="" selected style="color: black">Elige...</option>
+
+        <?php
+
+          $sql = "SELECT list_type_id, list_type FROM list_type";
+          $result = $conn->query($sql);
+
+          while ($row2 = $result->fetch_assoc()){
+            echo '<option value="'.$row2['list_type_id'].'" style="color: black">'.$row2['list_type'].'</option>';
+          }
+
+        ?>
+        </select>
+        </div>
+
+        Usuario
+        <div class="md-form">
+        <select class="form-control" id="user_id" name="user_id" required="true" style="color: white">
+        <option value="" selected style="color: black">Elige...</option>
 
         <?php
 
@@ -116,12 +138,12 @@ if (isset($_SESSION["user_id"])){
           $result = $conn->query($sql);
 
           while ($row2 = $result->fetch_assoc()){
-            echo '<option value="'.$row2['user_id'].'">'.$row2['user_name'].'</option>';
+            echo '<option value="'.$row2['user_id'].'"  style="color: black">'.$row2['user_name'].'</option>';
           }
 
         ?>
         </select>
-        <br>
+        </div>
 
         <p>Detalle de lista</p>
         <ol id="detalle_lista">

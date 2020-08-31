@@ -23,17 +23,17 @@ if (isset($_SESSION["user_id"])){
 ?>
   <br/>
   <div class="container">
-  <h3>Ver Listas de Reproducción</h3>
+  <h2><center>Ver Listas de Reproducción</center></h2>
 
 <?php
-   echo "<table class='table table-striped'>";
+   echo "<table class='table table-striped' style='color: white'>";
       echo "<thead><td>Lista</td><td>Videos</td><td>Acciones</td></thead>";
   if ($result->num_rows > 0) 
     while ($fila = $result->fetch_assoc()) {
       //print_r($fila);
      
       echo "<tr>";
-      echo "<td><a href='play.php?nombre=".$fila['nombre']."'>".$fila["nombre"]."</a></td>";
+      echo "<td><a onclick='agregar_visita(\"".$fila['nombre']."\")' href='play.php?nombre=".$fila['nombre']."' style='color:white'>".$fila["nombre"]."</a></td>";
       echo "<td><ol>";
 
       $lista =  explode(",", $fila["lista"]);
@@ -43,7 +43,7 @@ if (isset($_SESSION["user_id"])){
         $result2 = $conn->query($sql2);
 
 	while ($fila2 = $result2->fetch_assoc()) {
-          echo "<li><a href='../video/play.php?nombre=".$fila2['nombre']."'>".$fila2['nombre']."</a></li>";
+          echo "<li><a href='../video/play.php?nombre=".$fila2['nombre']."' style='color:white'>".$fila2['nombre']."</a></li>";
         }
       }
       echo "</ol></td>";
@@ -69,6 +69,16 @@ if (isset($_SESSION["user_id"])){
   alert("Programacion de evento eliminada");
   location.reload();
   }  
+
+
+  function agregar_visita(nombre){
+    $.post({
+      url: "agregar_visita.php",
+      data: "nombre="+nombre
+    });
+    
+  }  
+
 </script>
 
 <br><br><br><br>
