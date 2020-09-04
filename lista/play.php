@@ -1,7 +1,7 @@
 <?php  session_start(); ?>
-<?php include "../resources/header.html" ?>
+<?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
-<body style="background-color: #222222 !important;background-image: none;">
+<body style="background-color: #111111 !important;background-image: none;">
 
 <?php
 if (isset($_SESSION["user_id"])){
@@ -159,15 +159,15 @@ if (isset($_SESSION["user_id"])){
 </script>
 	
   <ul class="nav nav-tabs" style="padding-left: 10%;" role="tablist">
-    <li><a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Comentarios</a></li>
-    <li><a class="nav-link" id="home-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="true">Chat en vivo</a></li>
+    <li><a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" style="color: white">Comentarios</a></li>
+    <li><a class="nav-link" id="home-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="true" style="color: white">Chat en vivo</a></li>
   </ul>
 
   <div class="tab-content">
-    <div id="home" class="tab-pane active"><br>
+    <div id="home" class="tab-pane active" style="background-color: #222222;"><br>
     	<div id="comentarios" style="font-size: 14px"> <?php require('comentarios.php'); ?> </div>
     </div>
-    <div id="chat" class="tab-pane">
+    <div id="chat" class="tab-pane"  style=" background-color: #222222">
       	<div id="chat2" style="font-size: 14px"> <?php require('chat.php'); ?> </div>
     </div>	
   </div>

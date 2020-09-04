@@ -16,9 +16,8 @@ if (isset($_SESSION["user_id"])){
   <div class="post-comments">
 
       <div class="form-group" style="display: -webkit-box">
-        <textarea id="padre" class="form-control" rows="3" style="resize: none;width: 50%;margin-right :10px" placeholder=" Tu Comentario"></textarea>
-      
-      <button onclick="agregar_comentario('padre', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>, '')" class="btn btn-success">Enviar</button>
+        <textarea id="padre" class="form-control" rows="3" style="resize: none;width: 50%;margin-right :10px;background-color: transparent;border-color: #444;" placeholder=" Tu Comentario"></textarea>
+      <button onclick="agregar_comentario('padre', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>, '')" class="btn btn-success boton">Enviar</button>
       </div>
       
 <?php
@@ -59,7 +58,7 @@ error_reporting(E_ALL);
         <?php if( $row["user_id"] != $propietario) { ?>
         <div class="media-heading" style="background-color: <?php echo $color[$indice]; ?>">
         <?php } else{ ?>
-        <div class="media-heading" style="background-color: darkgreen">
+        <div class="media-heading" style="background-color: limegreen">
         <?php }?>
 
           <?php echo $row["user_name"][0]; ?>
@@ -73,9 +72,9 @@ error_reporting(E_ALL);
             <div class="media-body" style="padding-left: 15px;">
               <p> 
                  <?php if( $row["user_id"] != $propietario) { ?>
-                    <b style="color: blue; font-weight: bold;">
+                    <b style="color: teal; font-weight: bold;">
                  <?php } else{ ?>
-                    <b style="color: darkgreen; font-weight: bold;">
+                    <b style="color: limegreen; font-weight: bold;">
                  
                  <?php }?>
                   
@@ -91,9 +90,9 @@ error_reporting(E_ALL);
                       </span>
               <div class="collapse" id="comentario_<?php echo $row['comment_id']?>">
                     <div class="form-group" style="display: -webkit-box">
-                      <textarea id="hijo_<?php echo $row['comment_id'] ?>" class="form-control" rows="3" style="resize: none;margin-right :10px" placeholder=" Agregar comentario"></textarea>
+                      <textarea id="hijo_<?php echo $row['comment_id'] ?>" class="form-control" rows="3" style="resize: none;margin-right :10px;background-color: transparent;border-color: #444;" placeholder=" Agregar comentario"></textarea>
                     
-                    <button  onclick="agregar_comentario('hijo_<?php echo $row['comment_id'] ?>', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>, <?php echo $row['comment_id'] ?>)" class="btn btn-success">Post</button></div>
+                    <button  onclick="agregar_comentario('hijo_<?php echo $row['comment_id'] ?>', <?php echo $_SESSION['user_id'] ?>, <?php echo $id_lista ?>, <?php echo $row['comment_id'] ?>)" class="btn btn-success boton">Enviar</button></div>
                 </div>
               </div>
 
@@ -119,9 +118,9 @@ error_reporting(E_ALL);
             <div class="media-body">
               <p> 
               <?php if( $row["user_id"] != $propietario) { ?>
-                <b style="color: blue; font-weight: bold;">
+                <b style="color: teal; font-weight: bold;">
               <?php } else{ ?>
-                <b style="color: darkgreen; font-weight: bold;">
+                <b style="color: limegreen; font-weight: bold;">
                 <?php }?>
 
                   <?php echo $row2['user_name']?></b> (<?php echo date('d/m/Y', strtotime($row2['fecha_hora']));?>)<br> <?php echo $row2['descripcion']?></p>

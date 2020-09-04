@@ -1,6 +1,6 @@
 <?php  session_start(); ?>
 
-<?php include "./resources/header.html" ?>
+<?php include "./resources/header.php" ?>
 <?php include "./resources/navbar.php" ?>
 
 <?php 
@@ -28,27 +28,33 @@
   $row_user = $_SESSION;
 
 ?>
+    <style> 
+        body { 
+            opacity: 0; 
+            transition: opacity 3s; 
+        } 
+    </style> 
 
-  <body>
+  <body onload="document.body.style.opacity='1'">
 
 
 <div class="container">
 <br>
 <h2><center>Principal</center></h2>
-<h6>Bienvenido, <b><?php echo $row_user['user_name']; ?></b>.</h6>
+<br>
+<h4>Bienvenido, <b><?php echo $row_user['user_name']; ?></b>.</h4>
 <br>
 <br>
 <center>
-
 <?php
-echo "<h3>Eventos activos</h3>";
+echo "<h3>Eventos disponibles</h3><br>";
   if($eventos_activos->num_rows > 0)
   foreach ($eventos_activos as $index =>$item) { 
     
     if ($index %2==0)
       echo "<div class='row'>";
     
-    echo "<div class='col-6' style='padding-bottom: 10%;'>";
+    echo "<div class='col-6'>";
 
     echo "<a href='/cloud/lista/play.php?nombre=".$item['nombre']."' onclick='agregar_visita(\"".$item['nombre']."\")' style='color: white'>".$item['user_name']." - ". $item['nombre']."<br>";
     echo '<img src="/cloud/posters/'.$item['id'].'.jpg"class="img-fluid" alt=""/></a></div>';
@@ -61,18 +67,18 @@ echo "<h3>Eventos activos</h3>";
       if ($eventos_activos->num_rows %2==1)
       echo "</div>";
   else
-        echo "<i>No hay eventos activos por el momento</i>";
+        // echo "<i>No hay eventos activos por el momento</i>";
 
-
-echo "<h3>Eventos futuros</h3>";
+echo '<br><br>';
+echo "<h3>Eventos futuros</h3><br>";
   if($eventos_futuros->num_rows > 0)
   foreach ($eventos_futuros as $index =>$item) { 
     
     if ($index %2==0)
       echo "<div class='row'>";
     
-    echo "<div class='col-6' style='padding-bottom: 10%;'>";
-    echo "<a href='/cloud/lista/play.php?nombre=".$item['nombre']."' style='color: white'>".$item['user_name']." - ". $item['nombre']."<br>";
+    echo "<div class='col-6'>";
+    echo "<a href='#' style='color: white'>".$item['user_name']." - ". $item['nombre']."<br>";
     echo '<img src="/cloud/posters/'.$item['id'].'.jpg" class="img-fluid" alt=""/></a></div>';
     if ($index %2==1)
       echo "</div>";
@@ -82,12 +88,10 @@ echo "<h3>Eventos futuros</h3>";
   if ($eventos_futuros->num_rows %2==1)
       echo "</div>";
   else
-    echo "<i>No hay eventos futuros por el momento</i>";
+    // echo "<i>No hay eventos futuros por el momento</i>";
 ?>
-
 </center>
 </div>
-<br><br><br><br>
 </body>
 <script type="text/javascript">
 
@@ -100,5 +104,4 @@ echo "<h3>Eventos futuros</h3>";
   }  
 
 </script>
-
 <?php include "./resources/footer.php" ?>

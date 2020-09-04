@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include "../resources/header.html";
+include "../resources/header.php";
 include "../resources/navbar.php";
 
 if (isset($_SESSION["user_id"])){

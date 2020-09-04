@@ -19,3 +19,14 @@ body {
   color: white !important;
   opacity: 1; /* Firefox */
 }
+
+.nav-tabs {
+    border-bottom: 1px solid #222222;
+}
+
+.nav-link.active{
+	color: #fff;
+    background-color: #222222 !important ;
+    border-color: #222 !important;
+} 
+

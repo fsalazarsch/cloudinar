@@ -1,4 +1,4 @@
-<?php include "./resources/header.html" ?>
+<?php include "./resources/header.php" ?>
 <?php include "./resources/navbar.php" ?>
 <?php include './config/conneccion.php'; ?>
 <link rel="stylesheet" href="/cloud/resources/css/main.css" crossorigin="anonymous">
@@ -18,7 +18,7 @@
   $tos = $conn->query($sql)->fetch_assoc();
 
 ?>
-<body>
+<body onload="document.body.style.opacity='1'">
   <div class="container">
   <br>
 
@@ -33,7 +33,7 @@
   <input type="email" id="email" name="email" class="form-control" required="true" placeholder="Escribe tu e-mail" style=" text-transform: lowercase;color: white">
   </div>
   <div class="md-form">
-  Escrive tu contraseña
+  Escribe tu contraseña
   <input type="password" name="passwd" class="form-control" required="true" placeholder="Escribe tu contraseña" style="color: white">
   </div>
   <div class="md-form">

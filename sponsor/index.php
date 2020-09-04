@@ -1,5 +1,5 @@
 <?php  session_start(); ?>
-<?php include "../resources/header.html" ?>
+<?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
 <?php
 if (isset($_SESSION["user_id"])){

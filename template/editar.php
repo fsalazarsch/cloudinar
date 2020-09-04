@@ -1,5 +1,5 @@
 <?php  session_start(); ?>
-<?php include "../resources/header.html" ?>
+<?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.12/tinymce.min.js" integrity="sha512-d0g+KQCJo+/uZT1AnOD2d00LepW5V3kSyIG7s3ruia6gb1k3V1rcIOu7qTDAnNHEauhrQEGML7vkV3htQOIAxA==" crossorigin="anonymous"></script>
 

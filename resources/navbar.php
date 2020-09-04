@@ -1,7 +1,7 @@
 
   <nav class="navbar navbar-expand-md navbar-dark" style="background-color: black;">
   <!-- Brand -->
-  <a class="navbar-brand" href="#"><b><img src="/cloud/resources/eiam blanco transparente.png"></b></a>
+  <a class="navbar-brand" href="/index.php"><b><img src="/cloud/resources/eiam blanco transparente.png"></b></a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -47,7 +47,7 @@ else
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="index2.php">Ingresar</a>
+        <a class="nav-link" href="index.php">Inicio</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="registrar.php">Registrarse</a>

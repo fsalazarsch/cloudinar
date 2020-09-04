@@ -1,7 +1,7 @@
 <?php  session_start(); ?>
-<?php include "./resources/header.html" ?>
+<?php include "./resources/header.php" ?>
 <?php include "./resources/navbar.php" ?>
-<body>
+<body onload="document.body.style.opacity='1'">
   <br/>
 <div class="container">
 	<h2><center>¿Qué desea hacer, <?php echo $_SESSION['user_name']; ?>?</center></h2>
@@ -14,6 +14,7 @@
 	    <li><a style="color: white" href="lista/asistentes.php">Bajar lista asistentes</a></li>
 	    <li><a style="color: white" href="template/ver.php">Editar textos de correos y sitio</a></li>
 	    <li><a style="color: white" href="sponsor/index.php">Ver auspiciadores</a></li>
+	    <li><a style="color: white" href="fondo/index.php">Ver fondo</a></li>
 	</ol>
 </div>
 </body>

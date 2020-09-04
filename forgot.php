@@ -27,13 +27,13 @@ function envio_mail_postmark($destinatario, $titulo, $mensaje){
 
 
 
-<?php include "./resources/header.html" ?>
+<?php include "./resources/header.php" ?>
 <?php include "./resources/navbar.php" ?>
 <?php  require_once "../vendor/autoload.php"; ?>
 <link rel="stylesheet" href="/cloud/resources/css/main.css" crossorigin="anonymous">
 
 
-<body>
+<body onload="document.body.style.opacity='1'">
 
 <br>
 <div class="container">

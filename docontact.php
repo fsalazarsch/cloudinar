@@ -1,7 +1,7 @@
 <?php  session_start(); ?>
-<?php include "./resources/header.html" ?>
+<?php include "./resources/header.php" ?>
 <?php include "./resources/navbar.php" ?>
-<body>
+<body onload="document.body.style.opacity='1'">
 <div class="container">
 	<br>
 <?php
