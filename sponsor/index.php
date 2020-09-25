@@ -1,4 +1,7 @@
 <?php  session_start(); ?>
+<?php if (!isset($_SESSION['user_id'])) header ('Location: /index.php'); ?>
+<?php if ($_SESSION["user_type"] != 3) header ('Location: /index.php'); ?>
+
 <?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
 <?php
@@ -31,7 +34,7 @@ if (isset($_SESSION["user_id"])){
 </style>
 <div class="container">
 	<br>
-	<h2><center>Auspiciadores</center></h2>
+	<!--h2><center>Auspiciadores</center></h2-->
   <a class="btn btn-primary boton" href="agregar.php">Agregar auspiciador</a><br>
   <?php
   if($sponsors->num_rows > 0){

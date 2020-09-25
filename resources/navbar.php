@@ -4,7 +4,7 @@
   <a class="navbar-brand" href="/index.php"><b><img src="/cloud/resources/eiam blanco transparente.png"></b></a>
 
   <!-- Toggler/collapsibe Button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" >
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -13,7 +13,7 @@
 
 <?php if (isset($_SESSION['user_id']))
 { ?>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <div class="collapse navbar-collapse" id="collapsibleNavbar" style="position: absolute;left: 50%;transform: translatex(-50%);">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="https://eiam.site/cloud/center.php">Principal</a>
@@ -44,7 +44,7 @@
 else 
 { ?>
 
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <div class="collapse navbar-collapse" id="collapsibleNavbar" style="position: absolute;left: 50%;transform: translatex(-50%);">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="index.php">Inicio</a>
@@ -52,6 +52,7 @@ else
       <li class="nav-item">
         <a class="nav-link" href="registrar.php">Registrarse</a>
       </li>
+      <li class="nav-item"><a href="#modalLoginForm" data-toggle="modal" data-target="#modalLoginForm" class="nav-link" style="width: 100%">Ingresar</a></li>
       <li class="nav-item">
         <a class="nav-link" href="quienes.php">Quiénes somos</a>
       </li>

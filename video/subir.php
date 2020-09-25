@@ -1,4 +1,7 @@
 <?php  session_start(); ?>
+<?php if (!isset($_SESSION['user_id'])) header ('Location: /index.php'); ?>
+<?php if ($_SESSION["user_type"] != 3) header ('Location: /index.php'); ?>
+
 <?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
 
@@ -19,7 +22,7 @@ if (isset($_SESSION["user_id"])){
 	<br/>
 
 	<div class="container">
-		<h2> <center>Subir Video</center></h2>
+		<!--h2> <center>Subir Video</center></h2-->
 		<form enctype="multipart/form-data"  method="POST" action="upload.php">
 			Video
 			<div class="md-form">

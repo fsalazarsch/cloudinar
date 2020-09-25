@@ -1,4 +1,5 @@
 <?php  session_start(); ?>
+<?php if (!isset($_SESSION['user_id'])) header ('Location: /index.php'); ?>
 <?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
 <body style="background-color: #111111 !important;background-image: none;">
@@ -19,6 +20,13 @@ if (isset($_SESSION["user_id"])){
 	//$sentencia = $conn->prepare($sql);
   	//$sentencia->bind_param("s", $nombre );
   	//$sentencia->execute();
+
+	$sql = "SELECT nombre, link FROM socialmedia where nombre LIKE 'Instagram'";
+	$instagram = $conn->query($sql)->fetch_assoc();
+
+	$sql = "SELECT nombre, link FROM socialmedia where nombre LIKE 'Facebook'";
+	$facebook = $conn->query($sql)->fetch_assoc();
+
 
 	$sql = "SELECT id, lista, A.user_id, B.user_name, vistas FROM lista A, users B WHERE A.user_id = B.user_id AND nombre like '".$nombre."' LIMIT 1";
 	$result = $conn->query($sql);  
@@ -161,6 +169,9 @@ if (isset($_SESSION["user_id"])){
   <ul class="nav nav-tabs" style="padding-left: 10%;" role="tablist">
     <li><a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" style="color: white">Comentarios</a></li>
     <li><a class="nav-link" id="home-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="true" style="color: white">Chat en vivo</a></li>
+    <li style="padding-left: 40%;"><a href="<?php echo strtolower($instagram['link']); ?>"> <i class="fa fa-<?php echo strtolower($instagram['nombre']); ?> fa-2x text-white"></i></a>
+    	<a href="<?php echo strtolower($facebook['link']); ?>"> <i style="padding-left: 40px" class="fa fa-<?php echo strtolower($facebook['nombre']); ?> fa-2x text-white"></i></a>
+    </li>
   </ul>
 
   <div class="tab-content">

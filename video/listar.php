@@ -1,4 +1,7 @@
 <?php  session_start(); ?>
+<?php if (!isset($_SESSION['user_id'])) header ('Location: /index.php'); ?>
+<?php if ($_SESSION["user_type"] != 3) header ('Location: /index.php'); ?>
+
 <?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
 <body>
@@ -37,7 +40,7 @@ error_reporting(E_ALL);
 ?>
   <br/>
   <div class="container">
-  <h2><center>Ver Lista de Videos</center></h2>
+  <!--h2><center>Ver Lista de Videos</center></h2-->
 
   <kbd>Para ver un video pulse sobre el nombre del video</kbd><hr>
 

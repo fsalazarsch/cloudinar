@@ -6,11 +6,15 @@
   $db = new Database();
   $conn = $db->connect();
 
+  $sql = "SELECT nombre, link FROM socialmedia where nombre LIKE 'Instagram'";
+  $instagram = $conn->query($sql)->fetch_assoc();
+
+  $sql = "SELECT nombre, link FROM socialmedia where nombre LIKE 'Facebook'";
+  $facebook = $conn->query($sql)->fetch_assoc();
+
   $sql = "SELECT cuerpo FROM template where accion like 'principal' LIMIT 1";
   $principal = $conn->query($sql)->fetch_assoc();
 ?>
-
-
 <!--Modal: Login Form-->
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -41,6 +45,8 @@
         <br>
         <div class="text-center mt-4">
           <button id="submitButton" type="submit"  name="submit" class="btn btn-dark">Ingresar</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+
           </form>
         </div>
       </div>
@@ -52,31 +58,33 @@
 <!--Modal: Login  Form-->
 
 <body onload="document.body.style.opacity='1'">
+  <video type="video/mp4" muted loop autoplay="autoplay" src="https://res.cloudinary.com/enmateria-specs/video/upload/v1600139652/contenido/index.mp4" style="width: 100%;"></video>
   <div class="container">
-  <br>
+<br><br>
+      <div class="row">
+<div class="col-4"></div>
+<div class="col-1">        <a href="<?php echo strtolower($instagram['link']); ?>"> <i class="fa fa-<?php echo strtolower($instagram['nombre']); ?> fa-2x text-white"></i></a></i></div>
+<div class="col-2"></div>
+<div class="col-1"><a href="<?php echo strtolower($facebook['link']); ?>"> <i class="fa fa-<?php echo strtolower($facebook['nombre']); ?> fa-2x text-white"></i></a></div>
+</div>
     <center>
-    <h2 style="color: white"><center>Bienvenidos</center></h2>
+    <!--h2 style="color: white"><center>Bienvenidos</center></h2-->
     <br>
     <?php if (isset($_GET['login_error'])) { ?>
     <div class="alert alert-danger" role="alert">
   ERROR: email y/o usuario incorrectos
     </div>
     <?php } ?>
-    <br>
-    <div class="row">
+    <div class="row" style="display: block;">
+     <div class="col-5 align-self-center"></div>
      <div class="col-1"></div>
-     <div class="col-4"><img src="/cloud/resources/eiam.png" class="img-fluid"></div>
-     <div class="col-1"></div>
-     <div class="col-6">
-     <br><br><br>
+     <div class="col-6 align-self-center">
      <a href="#modalLoginForm" data-toggle="modal" data-target="#modalLoginForm" class="btn btn-primary boton" style="width: 100%">Estoy registrado</a><br>
      <a href="registrar.php" class="btn btn-primary boton" style="width: 100%">No estoy registrado</a><br>
     </div>
    </div>
-<?php echo  $principal["cuerpo"] ?>
-
-<?php include "carousel.php" ?>
     </center>
+<?php echo  $principal["cuerpo"] ?>
   </div>
 </body>
 <?php include "./resources/footer.php" ?>

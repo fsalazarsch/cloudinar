@@ -1,4 +1,7 @@
 <?php  session_start(); ?>
+<?php if (!isset($_SESSION['user_id'])) header ('Location: /index.php'); ?>
+<?php if ($_SESSION["user_type"] != 3) header ('Location: /index.php'); ?>
+
 <?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
 <?php include '../config/conneccion.php'; ?>
@@ -28,7 +31,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 	<br/>
 
 	<div class="container">
-		<h2><center>Programar lista</center></h2>
+		<!--h2><center>Programar lista</center></h2-->
 		<form enctype="multipart/form-data"  method="POST" action="doprogramar.php">
 		
 		Elige una lista

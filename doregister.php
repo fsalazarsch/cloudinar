@@ -56,6 +56,6 @@
 
 
 
-	header("Location: main.php");
+	header("Location: center.php");
 
  ?>

@@ -23,7 +23,7 @@
   <br>
 
   <form  method="POST" action="doregister.php">
-  <h2><center>Registrarse</center></h2>
+  <!--h2><center>Registrarse</center></h2-->
   <div class="md-form">
   Escribe tu nombre
   <input type="text" name="nombre" class="form-control" required="true" placeholder="Escribe tu nombre" minlength="4" style="color: white">
@@ -60,7 +60,7 @@
   </div>
     <div class="form-group md-form" id="divempresa" style="display: none">
     Escribe nombre de empresa
-    <input type="text" name="empresa" class="form-control" required="true" placeholder="Escribe nombre de empresa" style="color: white"><br>
+    <input type="text" name="empresa" class="form-control" placeholder="Escribe nombre de empresa" style="color: white"><br>
     </div>
      <div class="form-check">
   			  <label class="form-check-label">

@@ -1,15 +1,21 @@
-<footer class="footer" style="position: fixed;width: 100%;bottom: 0; background-color: white">
-<center>
-<h6>
-<i class="fa fa-spinner fa-spin"></i> | EnMateriaSpecs ©2020 |
-</h6>
-<br>
+
+<center style="background-color: black; padding-right: 15px;opacity: 50%">
+	
+	<div class="row" style="margin-left: 15px"><img src="/cloud/resources/auspician blanco transparente.png"></div>
+
+
+
+	<div class="row justify-content-start" style="margin-left: 0px">
+	<?php include "carousel.php" ?>
+	</div>
+
+<!--br>
 <div class="row">
-<div class="col-4"><a href="https://twitter.com"><i class="fa fa-twitter-square fa-lg"></i></a></div>
-<div class="col-4"><a href="https://instagram.com"><i class="fa fa-instagram fa-lg"></i></a></div>
-<div class="col-4"><a href="https://www.facebook.com"><i class="fa fa-facebook fa-lg"></i></a></div>
-</div>
-<br>
+<div class="col-4"><i class="fa fa-instagram fa-2x text-white"></i></div>
+<div class="col-4"><!--i class="fa fa-twitter-square fa-2x text-white"></i- -></div>
+<div class="col-4"><i class="fa fa-facebook fa-2x text-white"></i></div>
+</div-->
+
 </center>
 </footer>
 </html>

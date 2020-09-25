@@ -1,4 +1,7 @@
 <?php  session_start(); ?>
+<?php if (!isset($_SESSION['user_id'])) header ('Location: /index.php'); ?>
+<?php if ($_SESSION["user_type"] != 3) header ('Location: /index.php'); ?>
+
 <?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
 <body>
@@ -59,7 +62,7 @@ if (isset($_SESSION["user_id"])){
 
 <br>
 <div class="container">
-<h2><center>Crear Lista de Reproducción</center></h2>
+<!--h2><center>Crear Lista de Reproducción</center></h2-->
 <kbd>Para agregar un video a la lista pulse sobre el nombre del video, para quitarlo pulse otra vez sobre el video</kbd><hr>
 
 

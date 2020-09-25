@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-
+<?php
+// Agregado por Tan 20200904 19:10
+// $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+// if ((!isset($_SESSION['user_id'])) && ($actual_link != 'https://eiam.site/cloud/index.php')) header ('Location: /index.php');
+?>
 <link rel="icon" type="image/png" href="/cloud/favicon.ico"/>
   <meta property="og:image" content="/cloud/social.jpg">
   <meta property="og:image:type" content="image/jpg">
@@ -50,7 +54,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  font-family: Calibri;
+  font-family: Candara;
   font-size: larger;
   color: white;
 }

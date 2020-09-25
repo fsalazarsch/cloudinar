@@ -1,4 +1,7 @@
 <?php  session_start(); ?>
+<?php if (!isset($_SESSION['user_id'])) header ('Location: /index.php'); ?>
+<?php if ($_SESSION["user_type"] != 3) header ('Location: /index.php'); ?>
+
 <?php include "../resources/header.php" ?>
 <?php include "../resources/navbar.php" ?>
 <body>
@@ -23,7 +26,7 @@ if (isset($_SESSION["user_id"])){
 ?>
   <br/>
   <div class="container">
-  <h2><center>Ver Listas de Reproducción</center></h2>
+  <!--h2><center>Ver Listas de Reproducción</center></h2-->
 
 <?php
    echo "<table class='table table-striped' style='color: white'>";

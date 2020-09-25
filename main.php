@@ -1,5 +1,5 @@
 <?php  session_start(); ?>
-
+<?php if (!isset($_SESSION['user_id'])) header ('Location: /index.php'); ?>
 <?php include "./resources/header.php" ?>
 <?php include "./resources/navbar.php" ?>
 
@@ -33,14 +33,20 @@
             opacity: 0; 
             transition: opacity 3s; 
         } 
+        img:hover{
+          -webkit-transform:scale(1.3);
+          transform:scale(1.3);
+          transition-duration: .5s;
+        }
+        .zoomin{
+          overflow: hidden;
+        }
     </style> 
 
   <body onload="document.body.style.opacity='1'">
 
 
 <div class="container">
-<br>
-<h2><center>Principal</center></h2>
 <br>
 <h4>Bienvenido, <b><?php echo $row_user['user_name']; ?></b>.</h4>
 <br>
@@ -57,7 +63,8 @@ echo "<h3>Eventos disponibles</h3><br>";
     echo "<div class='col-6'>";
 
     echo "<a href='/cloud/lista/play.php?nombre=".$item['nombre']."' onclick='agregar_visita(\"".$item['nombre']."\")' style='color: white'>".$item['user_name']." - ". $item['nombre']."<br>";
-    echo '<img src="/cloud/posters/'.$item['id'].'.jpg"class="img-fluid" alt=""/></a></div>';
+    echo '<div class="zoomin">';
+    echo '<img src="/cloud/posters/'.$item['id'].'.jpg"class="img-fluid" alt=""/></a></div></div>';
     if ($index %2==1)
       echo "</div>";
 
@@ -79,7 +86,8 @@ echo "<h3>Eventos futuros</h3><br>";
     
     echo "<div class='col-6'>";
     echo "<a href='#' style='color: white'>".$item['user_name']." - ". $item['nombre']."<br>";
-    echo '<img src="/cloud/posters/'.$item['id'].'.jpg" class="img-fluid" alt=""/></a></div>';
+    echo '<div class="zoomin">';
+    echo '<img src="/cloud/posters/'.$item['id'].'.jpg" class="img-fluid" alt=""/></a></div></div>';
     if ($index %2==1)
       echo "</div>";
 
@@ -92,6 +100,7 @@ echo "<h3>Eventos futuros</h3><br>";
 ?>
 </center>
 </div>
+<br><br><br>
 </body>
 <script type="text/javascript">
 

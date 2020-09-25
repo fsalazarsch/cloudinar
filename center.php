@@ -1,5 +1,5 @@
 <?php  session_start(); ?>
-
+<?php if (!isset($_SESSION['user_id'])) header ('Location: /index.php'); ?>
 <?php include "./resources/header.php" ?>
 <?php include "./resources/navbar.php" ?>
 
@@ -28,15 +28,12 @@
 
 
 <div class="container">
-<br>
-<h2><center>Principal</center></h2>
-<br>
+
 
 <div class="row">
+  <div class="col-4 align-self-center"><img src="/cloud/resources/eiam.png" class="img-fluid"></div>
   <div class="col-1"></div>
-  <div class="col-4"><img src="/cloud/resources/eiam.png" class="img-fluid"></div>
-  <div class="col-1"></div>
-  <div class="col-6"><br><br><br>
+  <div class="col-7 align-self-center">
 <?php
   if($lista->num_rows > 0){
   foreach ($lista as $item) {   

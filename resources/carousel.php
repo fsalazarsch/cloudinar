@@ -34,7 +34,7 @@
         else
           echo '<div class="carousel-item">';
 
-        echo '<div class="col-2 float-right"><a href="'.$item['url'].'" target="_blank"><img src="'.$ruta.'" class="img-fluid" alt="'.$item['alt_text'].'"></a>';
+        echo '<div class="col-2 float-left"><a href="'.$item['url'].'" target="_blank"><img src="'.$ruta.'" class="img-fluid" alt="'.$item['alt_text'].'"></a>';
         echo '</div></div>';
       }
     ?>

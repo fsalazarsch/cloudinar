@@ -24,7 +24,7 @@
 <br>
 
 <div class="container">
-  <h2><center>Editar template</center></h2>
+  <!--h2><center>Editar template</center></h2-->
   <form  method="POST" action="doedittemplate.php">
   <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
   <textarea name="cuerpo" style="width: 100%;resize: none;" placeholder=" Escribe aqui el cuerpo de tu mensaje" required> <?php echo $row['cuerpo']; ?></textarea><br>
@@ -35,7 +35,7 @@
   <script>
     tinymce.init({
       selector: 'textarea',
-      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak visualblocks codesample preview code',
       toolbar_mode: 'floating',
        height: 300
     });
